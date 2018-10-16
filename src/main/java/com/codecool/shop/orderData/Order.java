@@ -6,28 +6,31 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private static int counter = 0;
-    private int id;
-    private List<Product> productList;
+    private List<LineItem> productList;
     private double total;
     private Costumer costumer;
     private Date date;
     private static Order instance = null;
 
-    private Order(Product product) {
-        this.id = counter++;
-        addToProductList(product);
+    private Order() {
         this.date = new Date();
     }
 
-    public static Order getInstance(Product product) {
+    public static Order getInstance() {
         if(instance == null)
-            instance = new Order(product);
+            instance = new Order();
         return instance;
     }
 
     public void addToProductList(Product product){
-        productList.add(product);
+        for (LineItem lineItem: productList) {
+            if (lineItem.compareProductId(product.getId())) {
+                lineItem.setQuantity();
+                setTotal();
+                return;
+            }
+        }
+        productList.add(new LineItem(product));
         setTotal();
     }
 
@@ -36,6 +39,6 @@ public class Order {
     }
 
     public void setTotal() {
-        this.total = productList.stream().map(product -> product.getDefaultPrice()).reduce((x, y) -> x + y).get();
+        this.total = productList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
     }
 }
