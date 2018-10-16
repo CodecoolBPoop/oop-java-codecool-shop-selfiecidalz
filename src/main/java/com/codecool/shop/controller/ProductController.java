@@ -21,14 +21,20 @@ import java.util.Map;
 public class ProductController extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map params = new HashMap<String, Object>();
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-
+        String id = req.getParameter("cat_id");
+        Map params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
-        params.put("actual_category", productCategoryDataStore.find(1));
-        params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+        if (id == null) {
+            params.put("actual_category", productCategoryDataStore.find(1));
+            params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+        } else {
+            params.put("actual_category", productCategoryDataStore.find(Integer.parseInt(id)));
+            params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.parseInt(id))));
+        }
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
