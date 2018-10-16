@@ -42,8 +42,16 @@
             <a th:each="cats,iterStat : ${category}" th:text="${cats.name}" th:href="@{'/?cat_id=' + ${cats.id}}">Category</a>
         </div>
     </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Suppliers
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <a th:each="supp,iterStat : ${supplier}" th:text="${supp.name}" th:href="@{'/?supp_id=' + ${supp.id}}">Supplier</a>
+        </div>
+    </div>
     <div class="well well-sm">
-        <strong th:text="${actual_category.name}">Category Title</strong>
+        <strong th:text="${actual_title.name}">Category Title</strong>
     </div>
 
     <div id="products" class="row list-group">
