@@ -39,7 +39,7 @@
             Categories
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button" th:each="cats,iterStat : ${category}" th:text="${cats.name}">Category</button>
+            <a th:each="cats,iterStat : ${category}" th:text="${cats.name}" th:href="@{'/?cat_id=' + ${cats.id}}">Category</a>
         </div>
     </div>
     <div class="well well-sm">
