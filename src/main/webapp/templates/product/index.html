@@ -34,8 +34,16 @@
 </div>
 
 <div class="container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button" th:each="cats,iterStat : ${category}" th:text="${cats.name}">Category</button>
+        </div>
+    </div>
     <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+        <strong th:text="${actual_category.name}">Category Title</strong>
     </div>
 
     <div id="products" class="row list-group">
