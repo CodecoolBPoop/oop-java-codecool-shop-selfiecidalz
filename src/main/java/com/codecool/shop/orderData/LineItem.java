@@ -12,6 +12,7 @@ public class LineItem {
 
     public LineItem(Product product) {
         this.productName = product.getName();
+        setQuantity();
         this.unitPrice = product.getDefaultPrice();
         this.subTotalPrice = unitPrice;
         this.product = product;

@@ -46,7 +46,6 @@
             </thead>
             <tbody th:each="product, iterStat:${shoppingCartList}">
             <tr>
-                <td th:text="${shoppingCartList}"></td>
                 <td><button>X BUTTON</button></td>
                 <td th:text="${product.getProductName()}"></td>
                 <td th:text="${product.getQuantity()}"></td>
