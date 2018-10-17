@@ -1,15 +1,18 @@
 function setEventListeners() {
-    for (btn of document.getElementsByClassName("add-to-cart-btn")) {
-        btn.addEventListener("click", sendProductIdToServer);
-    }
+    $(".add-to-cart-btn").click(sendProductIdToServer, event)
 }
 
-function sendProductIdToServer() {
-
+function sendProductIdToServer(event) {
+    let id = event.target.dataset["productid"];
+    $.post("/add-to-cart", {id:id}, function(data, status) {
+        console.log("data " + data + "status " + status);
+    })
 }
 
 function init() {
     setEventListeners();
 }
 
-init();
+$( document ).ready(function() {
+    init();
+});
