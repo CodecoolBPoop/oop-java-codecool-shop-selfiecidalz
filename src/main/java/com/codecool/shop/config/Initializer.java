@@ -9,6 +9,7 @@ import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import com.codecool.shop.orderData.Order;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -29,11 +30,16 @@ public class Initializer implements ServletContextListener {
         Supplier lenovo = new Supplier("Lenovo", "Computers");
         supplierDataStore.add(lenovo);
 
+
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
         ProductCategory testCategory = new ProductCategory("Test", "Test", "Test");
         productCategoryDataStore.add(testCategory);
+
+        Order myOrder = Order.getInstance();
+        myOrder.addToProductList(new Product("SzabiSapka", 2000, "USD", "So overpriced but cool cap", tablet, lenovo));
+        myOrder.addToProductList(new Product("Levipulcsi", 800, "USD", "poolcsi", testCategory, amazon));
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));

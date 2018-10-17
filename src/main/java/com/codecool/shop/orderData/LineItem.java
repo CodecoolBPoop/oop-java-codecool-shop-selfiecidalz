@@ -17,6 +17,22 @@ public class LineItem {
         this.product = product;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
     public void setQuantity(){
         this.quantity++;
         subTotalPrice += unitPrice;

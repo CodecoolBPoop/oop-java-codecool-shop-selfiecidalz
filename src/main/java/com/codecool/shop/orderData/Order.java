@@ -2,17 +2,19 @@ package com.codecool.shop.orderData;
 
 import com.codecool.shop.model.Product;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private List<LineItem> productList;
+    private static List<LineItem> cartList;
     private double total;
     private Costumer costumer;
     private Date date;
     private static Order instance = null;
 
     private Order() {
+        this.cartList = new ArrayList<>();
         this.date = new Date();
     }
 
@@ -22,15 +24,19 @@ public class Order {
         return instance;
     }
 
+    public static List<LineItem> getCartList() {
+        return cartList;
+    }
+
     public void addToProductList(Product product){
-        for (LineItem lineItem: productList) {
+        for (LineItem lineItem : cartList) {
             if (lineItem.compareProductId(product.getId())) {
                 lineItem.setQuantity();
                 setTotal();
                 return;
             }
         }
-        productList.add(new LineItem(product));
+        cartList.add(new LineItem(product));
         setTotal();
     }
 
@@ -39,6 +45,6 @@ public class Order {
     }
 
     public void setTotal() {
-        this.total = productList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
+        this.total = cartList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
     }
 }
