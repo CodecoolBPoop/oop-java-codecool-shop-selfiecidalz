@@ -2,11 +2,12 @@ package com.codecool.shop.orderData;
 
 import com.codecool.shop.model.Product;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private List<LineItem> productList;
+    private List<LineItem> productList = new ArrayList<>();
     private double total;
     private Costumer costumer;
     private Date date;

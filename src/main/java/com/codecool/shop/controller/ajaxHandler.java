@@ -1,7 +1,9 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
-
+import com.codecool.shop.model.Product;
+import com.codecool.shop.orderData.Order;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +17,9 @@ public class ajaxHandler extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("id"));
         int productId = Integer.parseInt(req.getParameter("id"));
-        ProductDaoMem.getInstance().find(productId);
+        Product product = ProductDaoMem.getInstance().find(productId);
+
+        Order.getInstance().addToProductList(product);
     }
 }
