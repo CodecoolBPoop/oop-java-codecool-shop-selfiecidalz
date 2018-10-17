@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    public List<LineItem> cartList = new ArrayList<>();
+    private List<LineItem> cartList = new ArrayList<>();
     private double total;
     private Costumer costumer;
     private Date date;
