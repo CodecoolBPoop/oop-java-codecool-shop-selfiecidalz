@@ -4,9 +4,8 @@ function setEventListeners() {
 
 function sendProductIdToServer(event) {
     let id = event.target.dataset["productid"];
-    $.post("/add-to-cart", {id:id}, function(data, status, a) {
+    $.post("/add-to-cart", {id:id}, function(data, status) {
         if (status == "success") {
-            console.log( a);
             incrementCartItemNumber();
         }
         console.log("data " + data + "status " + status);
