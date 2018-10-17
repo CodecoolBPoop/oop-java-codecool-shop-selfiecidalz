@@ -4,7 +4,7 @@ import com.codecool.shop.model.Product;
 
 public class LineItem {
     private String productName;
-    private int quantity = 0;
+    private int quantity = 1;
     private double unitPrice;
     private double subTotalPrice;
     private Product product;
@@ -12,7 +12,6 @@ public class LineItem {
 
     public LineItem(Product product) {
         this.productName = product.getName();
-        setQuantity();
         this.unitPrice = product.getDefaultPrice();
         this.subTotalPrice = unitPrice;
         this.product = product;

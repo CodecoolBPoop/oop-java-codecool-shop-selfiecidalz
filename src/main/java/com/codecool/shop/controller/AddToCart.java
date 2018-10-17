@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.orderData.Order;
@@ -13,13 +12,13 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = {"/add-to-cart"})
-public class ajaxHandler extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int productId = Integer.parseInt(req.getParameter("id"));
         Product product = ProductDaoMem.getInstance().find(productId);
 
-        Order.getInstance().addToProductList(product);
+        Order.getInstance().addToCartList(product);
     }
 }

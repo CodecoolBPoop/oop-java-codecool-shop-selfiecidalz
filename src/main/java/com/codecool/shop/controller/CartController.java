@@ -19,7 +19,7 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<LineItem> shoppingCartList = Order.getCartList();
+        List<LineItem> shoppingCartList = Order.getInstance().getCartList();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

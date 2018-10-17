@@ -7,6 +7,7 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.orderData.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -32,6 +33,9 @@ public class ProductController extends HttpServlet {
         Map params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", supplierDataStore.getAll());
+        // change this for sql
+        params.put("cartItemCount", Order.getInstance().getNumberOfProducts());
+
         if (id == null && supplierId == null) {
             params.put("actual_title", productCategoryDataStore.find(1));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));

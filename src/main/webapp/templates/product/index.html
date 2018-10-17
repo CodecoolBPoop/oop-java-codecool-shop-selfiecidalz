@@ -34,15 +34,24 @@
             defer></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/utility.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/shopping-cart-button-style.css"/>
 </head>
 
 <body>
 
 <div class="jumbotron text-center">
-    <h1 class="inline-display">Codecool Shop</h1>
-    <a href="/cart"><button class="btn btn-outline-success cart-button"><i class="fas fa-cart-arrow-down"></i></button></a>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"><h1>Codecool Shop</h1></div>
+        <div class="col">
+            <a href="/cart">
+                <button class="btn btn-outline-success cart-button">
+                    <i class="fas fa-cart-arrow-down"></i>
+                    <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
+                </button>
+            </a>
+        </div>
+    </div>
 </div>
 
 <div class="container">
