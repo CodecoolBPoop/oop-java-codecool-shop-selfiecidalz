@@ -4,7 +4,7 @@ import com.codecool.shop.model.Product;
 
 public class LineItem {
     private String productName;
-    private int quantity = 0;
+    private int quantity = 1;
     private double unitPrice;
     private double subTotalPrice;
     private Product product;
@@ -33,5 +33,9 @@ public class LineItem {
 
     public boolean compareProductId(int id) {
         return product.getId() == id;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

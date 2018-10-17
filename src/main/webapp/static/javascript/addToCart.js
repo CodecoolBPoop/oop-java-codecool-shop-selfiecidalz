@@ -4,9 +4,18 @@ function setEventListeners() {
 
 function sendProductIdToServer(event) {
     let id = event.target.dataset["productid"];
-    $.post("/add-to-cart", {id:id}, function(data, status) {
+    $.post("/add-to-cart", {id:id}, function(data, status, a) {
+        if (status == "success") {
+            console.log( a);
+            incrementCartItemNumber();
+        }
         console.log("data " + data + "status " + status);
     })
+}
+
+function incrementCartItemNumber() {
+    let cartItemCount = parseInt(document.getElementById("product-num").innerText);
+    document.getElementById("product-num").innerText = String(++cartItemCount);
 }
 
 function init() {

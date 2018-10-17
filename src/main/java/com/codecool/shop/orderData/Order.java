@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
-    private List<LineItem> productList = new ArrayList<>();
+    public List<LineItem> cartList = new ArrayList<>();
     private double total;
     private Costumer costumer;
     private Date date;
@@ -23,15 +23,15 @@ public class Order {
         return instance;
     }
 
-    public void addToProductList(Product product){
-        for (LineItem lineItem: productList) {
+    public void addToCartList(Product product){
+        for (LineItem lineItem: cartList) {
             if (lineItem.compareProductId(product.getId())) {
                 lineItem.setQuantity();
                 setTotal();
                 return;
             }
         }
-        productList.add(new LineItem(product));
+        cartList.add(new LineItem(product));
         setTotal();
     }
 
@@ -40,6 +40,16 @@ public class Order {
     }
 
     public void setTotal() {
-        this.total = productList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
+        this.total = cartList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
+    }
+    
+    public int getNumberOfProducts() {
+        int numOfProducts = 0;
+        if (cartList.size() != 0) {
+            for (LineItem lineItem: cartList) {
+                numOfProducts += lineItem.getQuantity();
+            }
+        }
+        return numOfProducts;
     }
 }

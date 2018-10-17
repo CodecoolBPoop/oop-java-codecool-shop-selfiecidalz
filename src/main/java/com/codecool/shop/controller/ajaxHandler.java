@@ -20,6 +20,6 @@ public class ajaxHandler extends HttpServlet {
         int productId = Integer.parseInt(req.getParameter("id"));
         Product product = ProductDaoMem.getInstance().find(productId);
 
-        Order.getInstance().addToProductList(product);
+        Order.getInstance().addToCartList(product);
     }
 }
