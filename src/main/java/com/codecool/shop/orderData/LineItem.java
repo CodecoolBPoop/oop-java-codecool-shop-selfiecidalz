@@ -17,6 +17,22 @@ public class LineItem {
         this.product = product;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
     public void setQuantity(){
         this.quantity++;
         subTotalPrice += unitPrice;
@@ -33,9 +49,5 @@ public class LineItem {
 
     public boolean compareProductId(int id) {
         return product.getId() == id;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 }
