@@ -23,19 +23,19 @@ import java.util.Map;
 public class ProductController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        String id = req.getParameter("cat_id");
-        String supplierId = req.getParameter("supp_id");
+        String id = req.getParameter("category");
+        String supplierId = req.getParameter("supplier");
         Map params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", supplierDataStore.getAll());
         if (id == null && supplierId == null) {
             params.put("actual_title", productCategoryDataStore.find(1));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
-        } else if (id != null){
+        } else if (id != null) {
             params.put("actual_title", productCategoryDataStore.find(Integer.parseInt(id)));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.parseInt(id))));
         } else {
