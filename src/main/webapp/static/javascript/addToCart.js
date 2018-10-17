@@ -8,7 +8,6 @@ function sendProductIdToServer(event) {
         if (status == "success") {
             incrementCartItemNumber();
         }
-        console.log("data " + data + "status " + status);
     })
 }
 
