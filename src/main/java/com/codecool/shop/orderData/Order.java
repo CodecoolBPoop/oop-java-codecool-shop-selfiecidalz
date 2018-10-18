@@ -17,6 +17,10 @@ public class Order {
         this.date = new Date();
     }
 
+    public void emptyCartList() {
+        cartList = new ArrayList<>();
+    }
+
     public static Order getInstance() {
         if(instance == null)
             instance = new Order();
