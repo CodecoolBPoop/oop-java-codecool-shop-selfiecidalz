@@ -40,12 +40,17 @@ public class LineItem {
 
     public void setQuantity(int quantity){
         this.quantity = quantity;
-        subTotalPrice = quantity * unitPrice;
+        this.subTotalPrice = quantity * unitPrice;
+
     }
 
     public double getSubTotalPrice() {
         return subTotalPrice;
     }
+
+//    public void setSubTotalPrice(double subTotalPrice) {
+//        this.subTotalPrice = subTotalPrice;
+//    }
 
     public boolean compareProductId(int id) {
         return product.getId() == id;
