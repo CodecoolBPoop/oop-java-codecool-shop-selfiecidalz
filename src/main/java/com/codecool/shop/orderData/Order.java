@@ -39,12 +39,40 @@ public class Order {
         setTotal();
     }
 
+    public void removeFromCartList(Product product){
+        List<LineItem> toRemove = new ArrayList<>();
+
+        for(LineItem item : cartList){
+            if(item.compareProductId(product.getId())){
+                toRemove.add(item);
+            }
+        }
+        cartList.removeAll(toRemove);
+        setTotal();
+//        while(cartIterator.hasNext()){
+//            LineItem item = cartIterator.next();
+//            if(item.compareProductId(product.getId())){
+//                item.setQuantity(0);
+//                cartList.remove(item);
+//                setTotal();
+//                System.out.println(cartList);
+//            }
+//        }
+    }
+
     public void setCostumer(Costumer costumer) {
         this.costumer = costumer;
     }
 
     public void setTotal() {
-        this.total = cartList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
+//        this.total = cartList.stream().map(product -> product.getSubTotalPrice()).reduce((x, y) -> x + y).get();
+
+        double tempTotal = 0;
+        for(LineItem item : cartList){
+            tempTotal += item.getSubTotalPrice();
+        }
+        this.total = tempTotal;
+
     }
 
     public int getNumberOfProducts() {
@@ -55,5 +83,9 @@ public class Order {
             }
         }
         return numOfProducts;
+    }
+
+    public double getTotal() {
+        return total;
     }
 }

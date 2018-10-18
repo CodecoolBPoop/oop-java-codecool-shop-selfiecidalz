@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/cart"})
-public class CartController extends HttpServlet {
+@WebServlet(urlPatterns = {"/checkout"})
+public class CheckoutController extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,9 +23,8 @@ public class CartController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("shoppingCartList", shoppingCartList);
-        context.setVariable("total", Order.getInstance().getTotal());
-        engine.process("product/cart.html", context, resp.getWriter());
+        engine.process("product/checkout.html", context, resp.getWriter());
 
     }
+
 }
