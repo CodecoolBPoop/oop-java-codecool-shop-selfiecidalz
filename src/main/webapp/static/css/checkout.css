@@ -1,0 +1,12 @@
+#container {
+    width: 65%;
+    margin: auto auto 10% auto;
+    background-color: #A9A995;
+    padding: 20px;
+    border: 4px solid #4950575c;
+    border-radius: 35px;
+}
+
+body {
+    background: beige;
+}
