@@ -56,4 +56,8 @@ public class Order {
         }
         return numOfProducts;
     }
+
+    public double getTotal() {
+        return total;
+    }
 }
