@@ -33,6 +33,7 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"
             defer></script>
 
+    <link rel="stylesheet" type="text/css" href="/static/css/checkout.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
 </head>
 
@@ -77,8 +78,8 @@
             <h3>Total price: <span th:text="${total}" id="total">1000</span> $</h3>
         </div>
         <div class="col-md-4">
-            <a href="/checkout">
-                <button class="btn btn-secondary float-right">Checkout</button>
+            <a>
+                <button href="#myModal" data-toggle="modal" class="btn btn-secondary float-right">Checkout</button>
             </a>
         </div>
     </section>
@@ -87,6 +88,56 @@
 </div>
 
 <div th:replace="footer.html :: copy"></div>
+
+<!-- checkout modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="container">
+        <form action="/payment" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputName">Name</label>
+                    <input name="name" class="form-control" id="inputName" placeholder="First name, Last name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Shipping address</label>
+                <input name="shipping-address" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input name="city" type="text" class="form-control" id="inputCity" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select name="state" id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input name="zip" type="text" class="form-control" id="inputZip" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">I accept terms & conditions.</label>
+                </div>
+            </div>
+            <button type="submit" id="payment-button" class="btn btn-primary">Payment</button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
