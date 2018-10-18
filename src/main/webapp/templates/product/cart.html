@@ -70,8 +70,7 @@
             <td th:text="${product.getProductName()}"></td>
             <td>
                 <input type="number" th:value="${product.getQuantity()}" min="0">
-                <button type="submit" class="refresh" th:attr="data-productId=${product.getProduct().getId()}"
-                        th:attrappend="data-subtotal=${product.getSubTotalPrice()}">Ref
+                <i class="fas fa-sync refresh" style="cursor: pointer; color: green" th:attr="data-productId=${product.getProduct().getId()}"></i>
                 </button>
             </td>
             <td th:text="${product.getUnitPrice()} + ' $'"></td>
@@ -109,11 +108,13 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
+                <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                       required>
             </div>
             <div class="form-group">
                 <label for="inputAddress2">Shipping address</label>
-                <input name="shipping-address" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
+                <input name="shipping-address" type="text" class="form-control" id="inputAddress2"
+                       placeholder="Apartment, studio, or floor" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -135,7 +136,9 @@
                 <button type="submit" id="payment-button" class="btn btn-primary float-right">Payment</button>
             </div>
         </form>
-        <a href="/cart"><button type="submit" class="btn btn-secondary mt-2">Cancel</button></a>
+        <a href="/cart">
+            <button type="submit" class="btn btn-secondary mt-2">Cancel</button>
+        </a>
     </div>
 </div>
 
