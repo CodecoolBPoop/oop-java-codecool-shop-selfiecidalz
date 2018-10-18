@@ -2,21 +2,26 @@ package com.codecool.shop.orderData;
 
 public class Costumer {
 
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
-    private String phoneNumber;
     private String billingAddress;
     private String shippingAddress;
+    private static Costumer instance;
 
-    public Costumer(String firstName, String lastName, String email, String phoneNumber,
-                    String billingAddress, String shippingAddress) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private Costumer(String name,  String email, String billingAddress, String shippingAddress) {
+        this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
     }
 
+    public String getall() {
+        return name + email + billingAddress + shippingAddress;
+    }
+
+    public static Costumer getInstance(String name, String email, String billingAddress, String shippingAddress) {
+        if(instance == null)
+            instance = new Costumer(name, email, billingAddress, shippingAddress);
+        return instance;
+    }
 }
