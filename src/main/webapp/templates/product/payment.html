@@ -23,6 +23,8 @@
             defer></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/tab.css"/>
+    <script type="text/javascript" src="/static/javascript/tabOpener.js" defer></script>
     <script type="text/javascript" src="/static/javascript/setCartEmpty.js" defer></script>
 
 </head>
@@ -34,15 +36,17 @@
     </a>
 </div>
 <div class="container">
-    <div class="col-sm-6">
+    <div class="tab col-sm-6">
+        <button class="tablinks active" onclick="openTab(event, 'creditcard')">Credit Card</button>
+        <button class="tablinks" onclick="openTab(event, 'paypal')">Paypal</button>
+    </div>
+    <div class="col-sm-6 tabcontent" id="creditcard" style="display: block">
         <fieldset>
-            <legend>Payment</legend>
-
-
             <div class="control-group">
                 <label class="control-label" label-default="">Card Holder's Name</label>
                 <div class="controls">
-                    <input title="First and last name" class="form-control" required="" type="text" pattern="\w+ \w+.*">
+                    <input title="First and last name" class="form-control" required="" type="text"
+                           pattern="\w+ \w+.*">
                 </div>
             </div>
 
@@ -51,16 +55,20 @@
                 <div class="controls">
                     <div class="row">
                         <div class="col-md-3">
-                            <input title="First four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                            <input title="First four digits" class="form-control" required="" type="text"
+                                   maxlength="4" pattern="\d{4}" autocomplete="off">
                         </div>
                         <div class="col-md-3">
-                            <input title="Second four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                            <input title="Second four digits" class="form-control" required="" type="text"
+                                   maxlength="4" pattern="\d{4}" autocomplete="off">
                         </div>
                         <div class="col-md-3">
-                            <input title="Third four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                            <input title="Third four digits" class="form-control" required="" type="text"
+                                   maxlength="4" pattern="\d{4}" autocomplete="off">
                         </div>
                         <div class="col-md-3">
-                            <input title="Fourth four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                            <input title="Fourth four digits" class="form-control" required="" type="text"
+                                   maxlength="4" pattern="\d{4}" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -109,20 +117,40 @@
                 <div class="controls">
                     <div class="row">
                         <div class="col-md-3">
-                            <input title="Three digits at back of your card" class="form-control" required="" type="password" maxlength="3" pattern="\d{3}" autocomplete="off">
+                            <input title="Three digits at back of your card" class="form-control" required=""
+                                   type="password" maxlength="3" pattern="\d{3}" autocomplete="off">
                         </div>
-                        <div class="col-md-8"><img height="40px"  width="180px" src="http://www.fa.ufl.edu/wp-content/uploads/cardops/Credit-Card-Logos.jpg"></div>
+                        <div class="col-md-8"><img height="40px" width="180px"
+                                                   src="http://www.fa.ufl.edu/wp-content/uploads/cardops/Credit-Card-Logos.jpg">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" label-default=""></label>
                 <div class="controls">
-                    <button id="payment-btn" href="#myModal" class="btn btn-primary" type="submit" data-toggle="modal">Submit</button>
-                    <a href="/"><button class="btn btn-default" type="button">Cancel</button></a>
+                    <button id="payment-btn" href="#myModal" class="btn btn-primary" type="submit"
+                            data-toggle="modal">Submit
+                    </button>
                 </div>
             </div>
         </fieldset>
+    </div>
+    <div class="col-sm-6 tabcontent" id="paypal">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                       placeholder="Enter username">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+        <button id="payment-btn" href="#myModal" class="btn btn-primary" type="submit"
+                data-toggle="modal">Submit
+        </button>
     </div>
 </div>
 <hr>
@@ -136,7 +164,9 @@
             </div>
 
             <div class="modal-footer">
-                <a href="/"><button class="btn btn-secondary">Back to the main page</button></a>
+                <a href="/">
+                    <button class="btn btn-secondary">Back to the main page</button>
+                </a>
             </div>
         </div>
     </div>
