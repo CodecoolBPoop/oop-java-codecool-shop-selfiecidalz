@@ -53,15 +53,6 @@ public class Order {
         }
         cartList.removeAll(toRemove);
         setTotal();
-//        while(cartIterator.hasNext()){
-//            LineItem item = cartIterator.next();
-//            if(item.compareProductId(product.getId())){
-//                item.setQuantity(0);
-//                cartList.remove(item);
-//                setTotal();
-//                System.out.println(cartList);
-//            }
-//        }
     }
 
     public void setCostumer(Costumer costumer) {
@@ -100,10 +91,12 @@ public class Order {
             for (LineItem item : cartList) {
                 if (item.compareProductId(product.getId())) {
                     item.setQuantity(quantity);
+                    setTotal();
                 }
             }
         } else if (quantity == 0) {
             removeFromCartList(product);
+            setTotal();
         }
     }
 }
