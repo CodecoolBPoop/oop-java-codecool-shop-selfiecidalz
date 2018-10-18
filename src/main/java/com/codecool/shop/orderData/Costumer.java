@@ -15,10 +15,6 @@ public class Costumer {
         this.shippingAddress = shippingAddress;
     }
 
-    public String getall() {
-        return name + email + billingAddress + shippingAddress;
-    }
-
     public static Costumer getInstance(String name, String email, String billingAddress, String shippingAddress) {
         if(instance == null)
             instance = new Costumer(name, email, billingAddress, shippingAddress);
