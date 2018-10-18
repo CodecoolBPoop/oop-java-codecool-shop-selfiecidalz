@@ -88,4 +88,18 @@ public class Order {
     public double getTotal() {
         return total;
     }
+
+
+    // handle minus!!!
+    public void changeQuantity(Product product, int quantity) {
+        if (quantity > 0) {
+            for (LineItem item : cartList) {
+                if (item.compareProductId(product.getId())) {
+                    item.setQuantity(quantity);
+                }
+            }
+        } else if (quantity == 0) {
+            removeFromCartList(product);
+        }
+    }
 }
