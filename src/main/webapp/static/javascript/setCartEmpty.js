@@ -1,5 +1,5 @@
 function setEventListener() {
-    $("#payment-btn").click(emptyTheCartList)
+    $(".payment-btn").click(emptyTheCartList)
 }
 
 function emptyTheCartList() {
