@@ -70,8 +70,8 @@
             <td th:text="${product.getProductName()}"></td>
             <td>
                 <input type="number" th:value="${product.getQuantity()}" min="0">
-                <i class="fas fa-sync refresh" style="cursor: pointer; color: green" th:attr="data-productId=${product.getProduct().getId()}"></i>
-                </button>
+                <i class="fas fa-sync refresh" style="cursor: pointer; color: green"
+                   th:attr="data-productId=${product.getProduct().getId()}"></i>
             </td>
             <td th:text="${product.getUnitPrice()} + ' $'"></td>
             <td th:text="${product.getSubTotalPrice()} + ' $'" th:id="subtotal + ${product.getProduct().getId()}"></td>
