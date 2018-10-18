@@ -3,7 +3,6 @@ $(".refresh").click(refreshQuantity, event);
 function refreshQuantity(event) {
     let quantity = event.target.previousElementSibling.value;
     let defValue = event.target.previousElementSibling.defaultValue;
-    let subtotal = event.target.parentElement.nextElementSibling.nextElementSibling.innerHTML;
     let unitPrice = event.target.parentElement.nextElementSibling.innerHTML;
     let id = event.target.dataset["productid"];
     if (parseInt(quantity) < 0) {
