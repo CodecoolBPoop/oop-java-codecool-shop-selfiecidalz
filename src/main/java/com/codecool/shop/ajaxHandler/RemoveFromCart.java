@@ -18,7 +18,6 @@ public class RemoveFromCart extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        System.out.println(id);
         int productId = Integer.parseInt(id);
         Product product = ProductDaoMem.getInstance().find(productId);
 

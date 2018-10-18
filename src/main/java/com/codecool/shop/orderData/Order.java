@@ -49,8 +49,6 @@ public class Order {
         }
         cartList.removeAll(toRemove);
         setTotal();
-        System.out.println(cartList);
-
 //        while(cartIterator.hasNext()){
 //            LineItem item = cartIterator.next();
 //            if(item.compareProductId(product.getId())){

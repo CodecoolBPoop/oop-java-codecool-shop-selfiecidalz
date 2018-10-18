@@ -58,9 +58,12 @@
         <tbody>
         <tr th:each="product, iterStat:${shoppingCartList}">
             <td>
-                <button class="btn btn-danger btn-sm remove-item" th:attr="data-productId=${product.getProduct().getId()}">
-                <i class="far fa-trash-alt" th:attr="data-productId=${product.getProduct().getId()}"></i>
-            </button>
+                <button class="btn btn-danger btn-sm remove-item"
+                        th:attr="data-productId=${product.getProduct().getId()}"
+                        th:attrappend="data-subtotal=${product.getSubTotalPrice()}">
+                    <i class="far fa-trash-alt" th:attr="data-productId=${product.getProduct().getId()}"
+                       th:attrappend="data-subtotal=${product.getSubTotalPrice()}"></i>
+                </button>
             </td>
             <td th:text="${product.getProductName()}"></td>
             <td th:text="${product.getQuantity()}"></td>
@@ -71,7 +74,7 @@
     </table>
     <section class="row">
         <div class="col-md-8">
-            <h3>Total price: <span th:text="${total}">1000</span> $</h3>
+            <h3>Total price: <span th:text="${total}" id="total">1000</span> $</h3>
         </div>
         <div class="col-md-4">
             <a href="/checkout">
