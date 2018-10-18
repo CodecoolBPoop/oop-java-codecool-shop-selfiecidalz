@@ -29,7 +29,6 @@ public class PaymentController extends HttpServlet {
                 req.getParameter("address"),
                 req.getParameter("shipping-address")
         );
-        System.out.println(costumer.getall());
         Order.getInstance().setCostumer(costumer);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
