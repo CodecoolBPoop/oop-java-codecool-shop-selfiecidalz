@@ -23,7 +23,7 @@
             defer></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/payment.css"/>
+
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -36,11 +36,35 @@
     <div class="col-sm-6">
         <fieldset>
             <legend>Payment</legend>
+
+
             <div class="control-group">
                 <label class="control-label" label-default="">Card Holder's Name</label>
                 <div class="controls">
                     <input title="First and last name" class="form-control" required="" type="text" pattern="\w+ \w+.*">
                 </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" label-default="">Card Number</label>
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input title="First four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                        </div>
+                        <div class="col-md-3">
+                            <input title="Second four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                        </div>
+                        <div class="col-md-3">
+                            <input title="Third four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                        </div>
+                        <div class="col-md-3">
+                            <input title="Fourth four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="control-group">
                 <label class="control-label" label-default="">Card Expiry Date</label>
                 <div class="controls">
@@ -77,6 +101,8 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="control-group">
                 <label class="control-label" label-default="">Card CVV</label>
                 <div class="controls">
@@ -91,51 +117,28 @@
             <div class="control-group">
                 <label class="control-label" label-default=""></label>
                 <div class="controls">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                    <button class="btn btn-default" type="button">Cancel</button>
+                    <button href="#myModal" class="btn btn-primary" type="submit" data-toggle="modal">Submit</button>
+                    <a href="/"><button class="btn btn-default" type="button">Cancel</button></a>
                 </div>
             </div>
         </fieldset>
     </div>
 </div>
 <hr>
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="text-align: center" id="myModalLabel">Thank you for buying!</h3>
+            </div>
+
+            <div class="modal-footer">
+                <a href="/"><button class="btn btn-secondary">Back to the main page</button></a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
-            <!--</div><a href="#myModal" role="button" class="btn btn-default" data-toggle="modal">Launch demo modal</a>-->
-
-            <!--<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
-                <!--<div class="modal-dialog">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-                            <!--<h3 id="myModalLabel">Modal header</h3>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body">-->
-                            <!--<p>One fine body…</p>-->
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
-                            <!--<button class="btn btn-primary">Save changes</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="control-group">-->
-                <!--<label class="control-label" label-default="">Card Number</label>-->
-                <!--<div class="controls">-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-md-3">-->
-                            <!--<input title="First four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">-->
-                        <!--</div>-->
-                        <!--<div class="col-md-3">-->
-                            <!--<input title="Second four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">-->
-                        <!--</div>-->
-                        <!--<div class="col-md-3">-->
-                            <!--<input title="Third four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">-->
-                        <!--</div>-->
-                        <!--<div class="col-md-3">-->
-                            <!--<input title="Fourth four digits" class="form-control" required="" type="text" maxlength="4" pattern="\d{4}" autocomplete="off">-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
