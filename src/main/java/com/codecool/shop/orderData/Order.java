@@ -2,6 +2,7 @@ package com.codecool.shop.orderData;
 
 import com.codecool.shop.model.Product;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,5 +99,19 @@ public class Order {
             removeFromCartList(product);
             setTotal();
         }
+    }
+
+    public Costumer getCostumer() {
+        return costumer;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order: ");
+        for (LineItem item : cartList) {
+            sb.append(item.toString());
+        }
+        return sb.toString();
     }
 }
