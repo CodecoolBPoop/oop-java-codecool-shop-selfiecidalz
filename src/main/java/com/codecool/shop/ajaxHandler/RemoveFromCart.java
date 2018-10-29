@@ -17,18 +17,13 @@ public class RemoveFromCart extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //empty the cart
-        if (req.getParameter("setCartEmpty") != null) {
-            Order.getInstance().emptyCartList();
-        } else {
-        // remove items
-            String id = req.getParameter("id");
-            int productId = Integer.parseInt(id);
-            Product product = ProductDaoMem.getInstance().find(productId);
+    // remove items
+        String id = req.getParameter("id");
+        int productId = Integer.parseInt(id);
+        Product product = ProductDaoMem.getInstance().find(productId);
 
-            Order.getInstance().removeFromCartList(product);
-            Order.getInstance().setTotal();
-            resp.sendRedirect("/cart");
-        }
+        Order.getInstance().removeFromCartList(product);
+        Order.getInstance().setTotal();
+        resp.sendRedirect("/cart");
     }
 }
