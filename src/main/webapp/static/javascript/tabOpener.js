@@ -1,6 +1,7 @@
-function openTab(evt, cityName) {
+function openTab(event) {
     // Declare all variables
     var i, tabcontent, tablinks;
+
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -14,9 +15,16 @@ function openTab(evt, cityName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
+    var value = event.target.value;
+
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementById(value).style.display = "block";
+    event.currentTarget.className += " active";
 }
 
-document.getElementById("defaultOpen").click();
+var evt = document.getElementsByClassName("tablinks");
+for (i = 0; i < evt.length; i++) {
+    evt[i].addEventListener("click", function() {
+        openTab(event);
+    });
+}
