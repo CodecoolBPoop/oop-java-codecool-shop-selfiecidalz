@@ -18,8 +18,8 @@ public class Order {
         this.date = new Date();
     }
 
-    public void emptyCartList() {
-        cartList = new ArrayList<>();
+    public void deleteOrder() {
+        instance = null;
     }
 
     public static Order getInstance() {
