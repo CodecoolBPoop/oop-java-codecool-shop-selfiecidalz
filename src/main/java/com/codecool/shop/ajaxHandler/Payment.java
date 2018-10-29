@@ -16,9 +16,7 @@ public class Payment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //empty the cart
+        Order.getInstance().deleteOrder();
         SendEmail.sendEmail();
-        Order.getInstance().emptyCartList();
-        System.out.println("ITT");
-        System.out.println(Order.getInstance().getCartList().size());
     }
 }

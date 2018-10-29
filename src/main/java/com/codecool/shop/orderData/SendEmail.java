@@ -33,9 +33,9 @@ public class SendEmail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("from@no-spam.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(Order.getInstance().getCostumer().getEmail()));
+                    InternetAddress.parse("asdlevente@gmail.com"));
             message.setSubject("Testing Subject");
-            message.setText(Order.getInstance().toString());
+            message.setText("Rendeltél madafaka!");
 
             Transport.send(message);
 
