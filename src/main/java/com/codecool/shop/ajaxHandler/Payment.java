@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -35,13 +34,19 @@ public class Payment extends HttpServlet {
 
             jsonArr.put(innerJson);
         }
+        orderJson.put("total", Order.getInstance().getTotal());
         orderJson.put("cartList", jsonArr);
 
-        FileWriter fileWriter = new FileWriter("D:/test/order" + fileNameExtension++);
+        JSONObject customerInfo = new JSONObject();
+        customerInfo.put("email", Order.getInstance().getCostumer().getEmail());
+        customerInfo.put("name", Order.getInstance().getCostumer().getName());
+        orderJson.put("customer", customerInfo);
+
+        FileWriter fileWriter = new FileWriter("src/main/webapp/static/json/order" + fileNameExtension++ + ".json");
         fileWriter.write(orderJson.toString());
         fileWriter.close();
 
         Order.getInstance().deleteOrder();
-        // SendEmail.sendEmail();
+        SendEmail.sendEmail(orderJson);
     }
 }
