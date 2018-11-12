@@ -32,6 +32,7 @@ CREATE TABLE "Products" (
 	"supplier_id" int NOT NULL,
 	"category_id" int NOT NULL,
 	"currency_id" int NOT NULL,
+  "image_path" varchar NOT NULL,
 	CONSTRAINT Products_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
