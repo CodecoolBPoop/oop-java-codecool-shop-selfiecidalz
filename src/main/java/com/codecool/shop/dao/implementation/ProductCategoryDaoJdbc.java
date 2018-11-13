@@ -80,4 +80,21 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         }
         return result;
     }
+
+    public int getIdByName(String name) {
+        String getName = "SELECT id FROM categories WHERE name=?";
+        try (Connection connection = DbConnection.getConnection();
+            PreparedStatement getItByName = connection.prepareStatement(getName)
+        ) {
+            getItByName.setString(1, name);
+            ResultSet resultSet = getItByName.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                return id;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }
