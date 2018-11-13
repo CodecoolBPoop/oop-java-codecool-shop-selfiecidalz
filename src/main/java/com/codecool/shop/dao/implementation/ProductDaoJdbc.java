@@ -16,15 +16,18 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public void add(Product product){
         try {
-            String statement =
-                "INSERT INTO products(name, price, description, supplier_id, category_id) VALUES (?,?,?,?)";
-            PreparedStatement query = getConnection().prepareStatement(statement);
-            query.setString(1, product.getName());
-            query.setFloat(2, product.getDefaultPrice());
-            query.setString(3, product.getDescription());
+            String query =
+                "INSERT INTO products(name, price, description, supplier_id, category_id) VALUES (?,?,?,?,?)";
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            statement.setString(1, product.getName());
+            statement.setFloat(2, product.getDefaultPrice());
+            statement.setString(3, product.getDescription());
+//            int supplierId =
             int productCategoryId = ProductCategoryDaoJdbc.getIdByName(product.getProductCategory().getName());
-            query.setInt(4, productCategoryId);
-            query.execute();
+            statement.setInt(4, productCategoryId);
+            int currencyId = CurrencyDaoJdbc.getIdByName(product.getDefaultCurrency());
+            statement.setInt(5, currencyId);
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
