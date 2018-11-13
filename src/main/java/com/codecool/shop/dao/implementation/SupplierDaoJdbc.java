@@ -93,4 +93,17 @@ public class SupplierDaoJdbc implements SupplierDao {
         return result;
 
     }
+
+    public static int getSupplierIdByName(String name){
+        String query = "SELECT id FROM suppliers WHERE name=?";
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            return result.getInt("id");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

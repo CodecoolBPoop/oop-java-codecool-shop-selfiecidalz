@@ -22,6 +22,22 @@ public class CurrencyDaoJdbc {
         }
     }
 
+    public static String findCurrency(int id) {
+        String query = "SELECT name FROM currencies WHERE id=?;";
+        try {
+            Connection connection = DbConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.getString("name");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static int getIdByName(String name){
         try {
             String query =

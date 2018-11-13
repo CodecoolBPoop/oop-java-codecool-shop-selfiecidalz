@@ -8,6 +8,7 @@ import com.codecool.shop.model.Supplier;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,16 +18,19 @@ public class ProductDaoJdbc implements ProductDao {
     public void add(Product product){
         try {
             String query =
-                "INSERT INTO products(name, price, description, supplier_id, category_id) VALUES (?,?,?,?,?)";
+                "INSERT INTO products(name, price, description, supplier_id, category_id, currency_id) VALUES (?,?,?,?,?,?)";
             PreparedStatement statement = getConnection().prepareStatement(query);
+
+            int supplierId = SupplierDaoJdbc.getSupplierIdByName(product.getSupplier().getName());
+            int productCategoryId = ProductCategoryDaoJdbc.getIdByName(product.getProductCategory().getName());
+            int currencyId = CurrencyDaoJdbc.getIdByName(product.getDefaultCurrency());
+
             statement.setString(1, product.getName());
             statement.setFloat(2, product.getDefaultPrice());
             statement.setString(3, product.getDescription());
-//            int supplierId =
-            int productCategoryId = ProductCategoryDaoJdbc.getIdByName(product.getProductCategory().getName());
-            statement.setInt(4, productCategoryId);
-            int currencyId = CurrencyDaoJdbc.getIdByName(product.getDefaultCurrency());
-            statement.setInt(5, currencyId);
+            statement.setInt(4, supplierId);
+            statement.setInt(5, productCategoryId);
+            statement.setInt(6, currencyId);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,6 +39,27 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public Product find(int id) {
+        String query =
+                "SELECT * FROM products WHERE id=?";
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,id);
+            ResultSet result = statement.executeQuery();
+            String name = result.getString("name");
+            Float price =
+            Product product = new Product(
+                    result.getString("name"),
+                    result.getFloat("price"),
+                    CurrencyDaoJdbc.findCurrency(result.getInt("currency_id"))
+                    result.getString("description"),
+                    ProductCategoryDaoJdbc.find(result.getInt("category_id"),
+                    result.getInt("supplier_id"),
+            );
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
