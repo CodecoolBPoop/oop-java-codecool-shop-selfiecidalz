@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS "orders";
 
 DROP TABLE IF EXISTS "lineitems";
 
+DROP SEQUENCE IF EXISTS public.products_id_seq;
 CREATE TABLE "products" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE "products" (
 );
 
 
-
+DROP SEQUENCE IF EXISTS public.categories_id_seq;
 CREATE TABLE "categories" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL,
@@ -51,7 +52,7 @@ CREATE TABLE "categories" (
 );
 
 
-
+DROP SEQUENCE IF EXISTS public.currencies_id_seq;
 CREATE TABLE "currencies" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL,
@@ -61,7 +62,7 @@ CREATE TABLE "currencies" (
 );
 
 
-
+DROP SEQUENCE IF EXISTS public.suppliers_id_seq;
 CREATE TABLE "suppliers" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL,
@@ -72,7 +73,7 @@ CREATE TABLE "suppliers" (
 );
 
 
-
+DROP SEQUENCE IF EXISTS public.users_id_seq;
 CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"name" varchar NOT NULL,
@@ -86,7 +87,7 @@ CREATE TABLE "users" (
 );
 
 
-
+DROP SEQUENCE IF EXISTS public.orders_id_seq;
 CREATE TABLE "orders" (
 	"id" serial NOT NULL,
 	"user_id" int NOT NULL,
@@ -96,7 +97,6 @@ CREATE TABLE "orders" (
 ) WITH (
   OIDS=FALSE
 );
-
 
 
 CREATE TABLE "lineitems" (
@@ -121,4 +121,26 @@ ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("user_id") REFEREN
 
 ALTER TABLE "lineitems" ADD CONSTRAINT "lineitems_fk0" FOREIGN KEY ("order_id") REFERENCES "orders"("id");
 ALTER TABLE "lineitems" ADD CONSTRAINT "lineitems_fk1" FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+
+INSERT INTO "currencies" (name) VALUES ('USD');
+INSERT INTO "currencies" (name) VALUES ('HUF');
+INSERT INTO "currencies" (name) VALUES ('EUR');
+INSERT INTO "currencies" (name) VALUES ('CHF');
+INSERT INTO "currencies" (name) VALUES ('GBP');
+
+INSERT INTO "suppliers" (name, description) VALUES ('Amazon', 'Digital content and services');
+INSERT INTO "suppliers" (name, description) VALUES ('Lenovo', 'Computers');
+SELECT pg_catalog.setval('suppliers_id_seq', 2, true);
+
+INSERT INTO "categories" (name, department, description) VALUES ('Tablet', 'Hardware', 'A tablet computer. Commonly shortend to tablet is a thin, flat mobile computer with a touchscreen display.');
+INSERT INTO "categories" (name, department, description) VALUES ('Test', 'Test', 'Test');
+SELECT pg_catalog.setval('categories_id_seq', 2, true);
+
+INSERT INTO "products" (name, price, description, supplier_id, category_id, currency_id, image_path) VALUES ('Amazon Fire', 49, 'Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.', 1, 1, 1, '/static/img/product_1.jpg');
+INSERT INTO "products" (name, price, description, supplier_id, category_id, currency_id, image_path) VALUES ('Lenovo IdeaPad Miix 700', 479, 'Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.', 2, 1, 1, '/static/img/product_2.jpg');
+INSERT INTO "products" (name, price, description, supplier_id, category_id, currency_id, image_path) VALUES ('Amazon Fire HD 8', 89, 'Amazon''s latest Fire HD 8 tablet is a great value for media consumption.', 1, 1, 1, '/static/img/product_3.jpg');
+SELECT pg_catalog.setval('products_id_seq', 3, true);
+
+
+
 
