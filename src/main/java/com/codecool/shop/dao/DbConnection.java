@@ -7,7 +7,7 @@ public class DbConnection {
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "postgres";
 
-    private java.sql.Connection getConnection() throws SQLException {
+    public static java.sql.Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DATABASE,
                 DB_USER,
