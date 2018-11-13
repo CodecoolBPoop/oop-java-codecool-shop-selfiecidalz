@@ -13,6 +13,20 @@ import java.util.List;
 
 public class SupplierDaoJdbc implements SupplierDao {
 
+    private static SupplierDaoJdbc instance = null;
+
+    /* A private Constructor prevents any other class from instantiating.
+     */
+    private SupplierDaoJdbc() {
+    }
+
+    public static SupplierDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new SupplierDaoJdbc();
+        }
+        return instance;
+    }
+
     @Override
     public void add(Supplier supplier) {
         try (Connection connection = DbConnection.getConnection();
