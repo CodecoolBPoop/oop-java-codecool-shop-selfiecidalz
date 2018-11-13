@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoJdbc implements ProductDao {
@@ -66,7 +67,8 @@ public class ProductDaoJdbc implements ProductDao {
                     CurrencyDaoJdbc.findCurrency(result.getInt("currency_id")),
                     result.getString("description"),
                     ProductCategoryDaoJdbc.getInstance().find(result.getInt("category_id")),
-                    SupplierDaoJdbc.getInstance().find(result.getInt("supplier_id"))
+                    SupplierDaoJdbc.getInstance().find(result.getInt("supplier_id")),
+                    result.getString("image_path")
             );
             return product;
         } catch (SQLException e){
@@ -77,22 +79,96 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public void remove(int id) {
-
+        String query =
+                "DELETE FROM products WHERE id=?";
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Product> getAll() {
-        return null;
+        String query =
+                "SELECT * FROM products";
+        List<Product> result = new ArrayList<>();
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                result.add(new Product(
+                        resultSet.getString("name"),
+                        resultSet.getFloat("price"),
+                        CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJdbc.getInstance().find(resultSet.getInt("category_id")),
+                        SupplierDaoJdbc.getInstance().find(resultSet.getInt("supplier_id")),
+                        resultSet.getString("image_path")
+                ));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return null;
+        String query =
+                "SELECT * FROM products WHERE supplier_id=?";
+        List<Product> result = new ArrayList<>();
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, SupplierDaoJdbc.getSupplierIdByName(supplier.getName()));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                result.add(new Product(
+                        resultSet.getString("name"),
+                        resultSet.getFloat("price"),
+                        CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJdbc.getInstance().find(resultSet.getInt("category_id")),
+                        SupplierDaoJdbc.getInstance().find(resultSet.getInt("supplier_id")),
+                        resultSet.getString("image_path")
+                ));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return null;
+        String query =
+                "SELECT * FROM products WHERE category_id=?";
+        List<Product> result = new ArrayList<>();
+        try {
+            Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, ProductCategoryDaoJdbc.getIdByName(productCategory.getName()));
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                result.add(new Product(
+                        resultSet.getString("name"),
+                        resultSet.getFloat("price"),
+                        CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
+                        resultSet.getString("description"),
+                        ProductCategoryDaoJdbc.getInstance().find(resultSet.getInt("category_id")),
+                        SupplierDaoJdbc.getInstance().find(resultSet.getInt("supplier_id")),
+                        resultSet.getString("image_path")
+                ));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private Connection getConnection(){
