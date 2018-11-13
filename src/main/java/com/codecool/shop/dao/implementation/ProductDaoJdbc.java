@@ -14,6 +14,19 @@ import java.util.List;
 
 public class ProductDaoJdbc implements ProductDao {
 
+    private static ProductDaoJdbc instance = null;
+
+    private ProductDaoJdbc() {
+    }
+
+    public static ProductDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new ProductDaoJdbc();
+        }
+        return instance;
+    }
+
+
     @Override
     public void add(Product product){
         try {

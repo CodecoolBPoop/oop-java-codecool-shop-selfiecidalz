@@ -9,6 +9,18 @@ import java.sql.SQLException;
 
 public class CurrencyDaoJdbc {
 
+    private static CurrencyDaoJdbc instance = null;
+
+    private CurrencyDaoJdbc() {
+    }
+
+    public static CurrencyDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new CurrencyDaoJdbc();
+        }
+        return instance;
+    }
+
 
     public void add(String name){
         try {
