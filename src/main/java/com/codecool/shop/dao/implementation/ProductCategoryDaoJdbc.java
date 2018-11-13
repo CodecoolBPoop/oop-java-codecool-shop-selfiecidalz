@@ -13,6 +13,18 @@ import java.util.List;
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
+    private static ProductCategoryDaoJdbc instance = null;
+
+    private ProductCategoryDaoJdbc() {
+    }
+
+    public static ProductCategoryDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJdbc();
+        }
+        return instance;
+    }
+
     @Override
     public void add(ProductCategory category) {
         try (Connection connection = DbConnection.getConnection();
@@ -32,11 +44,11 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     public ProductCategory find(int id) {
         String addQuery = "SELECT name, department, description FROM categories WHERE id=?;";
         try (Connection connection = DbConnection.getConnection();
-             PreparedStatement add = connection.prepareStatement(addQuery)
+             PreparedStatement find = connection.prepareStatement(addQuery)
         ){
-            add.setInt(1, id);
+            find.setInt(1, id);
 
-            ResultSet resultSet = add.executeQuery();
+            ResultSet resultSet = find.executeQuery();
             if (resultSet.next()) {
                 ProductCategory result = new ProductCategory(resultSet.getString("name"),
                         resultSet.getString("department"),
