@@ -1,22 +1,30 @@
 package com.codecool.shop.model;
 
 public class Product extends BaseModel {
-
+    private static int instanceCounter = 3;
     private float defaultPrice;
     private String defaultCurrency;
     private ProductCategory productCategory;
     private Supplier supplier;
+    private String imagePath;
 
 
-    public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+    public Product(String name, float defaultPrice, String currencyString,
+                   String description, ProductCategory productCategory,
+                   Supplier supplier) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
+        this.imagePath = "/static/img/product_" + (instanceCounter++) + ".jpg";
     }
 
     public float getDefaultPrice() {
         return defaultPrice;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     public void setDefaultPrice(float defaultPrice) {

@@ -31,7 +31,7 @@ public class ProductDaoJdbc implements ProductDao {
     public void add(Product product){
         try {
             String query =
-                "INSERT INTO products(name, price, description, supplier_id, category_id, currency_id) VALUES (?,?,?,?,?,?)";
+                "INSERT INTO products(name, price, description, supplier_id, category_id, currency_id, image_path) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement statement = getConnection().prepareStatement(query);
 
             int supplierId = SupplierDaoJdbc.getSupplierIdByName(product.getSupplier().getName());
@@ -44,6 +44,7 @@ public class ProductDaoJdbc implements ProductDao {
             statement.setInt(4, supplierId);
             statement.setInt(5, productCategoryId);
             statement.setInt(6, currencyId);
+            statement.setString(7, product.getImagePath());
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
