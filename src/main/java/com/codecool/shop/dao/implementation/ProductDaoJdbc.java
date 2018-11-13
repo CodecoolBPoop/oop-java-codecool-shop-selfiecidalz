@@ -17,12 +17,14 @@ public class ProductDaoJdbc implements ProductDao {
     public void add(Product product){
         try {
             String statement =
-                "INSERT INTO products(name, price, description, supplier_id, category_id) VALUES (?,?,?,?,?)";
+                "INSERT INTO products(name, price, description, supplier_id, category_id) VALUES (?,?,?,?)";
             PreparedStatement query = getConnection().prepareStatement(statement);
             query.setString(1, product.getName());
             query.setFloat(2, product.getDefaultPrice());
             query.setString(3, product.getDescription());
-//            query.setInt(4, );
+            int productCategoryId = ProductCategoryDaoJdbc.getIdByName(product.getProductCategory().getName());
+            query.setInt(4, productCategoryId);
+            query.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
