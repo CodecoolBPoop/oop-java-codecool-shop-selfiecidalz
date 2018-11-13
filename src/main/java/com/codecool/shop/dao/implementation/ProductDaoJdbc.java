@@ -46,17 +46,15 @@ public class ProductDaoJdbc implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1,id);
             ResultSet result = statement.executeQuery();
-            String name = result.getString("name");
-            Float price =
             Product product = new Product(
                     result.getString("name"),
                     result.getFloat("price"),
-                    CurrencyDaoJdbc.findCurrency(result.getInt("currency_id"))
+                    CurrencyDaoJdbc.findCurrency(result.getInt("currency_id")),
                     result.getString("description"),
-                    ProductCategoryDaoJdbc.find(result.getInt("category_id"),
-                    result.getInt("supplier_id"),
+                    ProductCategoryDaoJdbc.getInstance().find(result.getInt("category_id")),
+                    SupplierDaoJdbc.getInstance().find(result.getInt("supplier_id"))
             );
-
+            return product;
         } catch (SQLException e){
             e.printStackTrace();
         }
