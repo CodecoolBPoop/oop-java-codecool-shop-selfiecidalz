@@ -21,6 +21,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             add.setString(1, category.getName());
             add.setString(2, category.getDepartment());
             add.setString(3, category.getDescription());
+            add.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,6 +57,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             PreparedStatement remove = connection.prepareStatement("DELETE FROM categories WHERE id=?;")
         ){
             remove.setInt(1, id);
+            remove.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
