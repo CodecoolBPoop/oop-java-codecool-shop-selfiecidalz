@@ -42,7 +42,7 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public Supplier find(int id) {
-        String addQuery = "SELECT name, description FROM suppliers WHERE id=?;";
+        String addQuery = "SELECT id, name, description FROM suppliers WHERE id=?;";
         try (Connection connection = DbConnection.getConnection();
              PreparedStatement add = connection.prepareStatement(addQuery)
         ){
@@ -50,7 +50,9 @@ public class SupplierDaoJdbc implements SupplierDao {
 
             ResultSet resultSet = add.executeQuery();
             if (resultSet.next()) {
-                Supplier result = new Supplier(resultSet.getString("name"),
+                Supplier result = new Supplier(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("description"));
                 return result;
             } else {
@@ -84,7 +86,9 @@ public class SupplierDaoJdbc implements SupplierDao {
         ){
             ResultSet resultSet = getAllCategories.executeQuery();
             while(resultSet.next()) {
-                result.add(new Supplier(resultSet.getString("name"),
+                result.add(new Supplier(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("description")));
             }
         } catch (SQLException e) {
