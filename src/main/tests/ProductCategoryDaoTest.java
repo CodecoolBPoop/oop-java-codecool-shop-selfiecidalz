@@ -1,5 +1,6 @@
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.model.ProductCategory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,23 +11,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoryDaoTest {
 
-    private static ProductCategoryDao productCategoryDao = ProductCategoryDaoMem.getInstance();
+    private static ProductCategoryDao productCategoryData = ProductCategoryDaoMem.getInstance();
 
     @BeforeAll
     public static void setUp() {
 
-        
+        //setting up a new product category
+        ProductCategory tablet = new ProductCategory(
+                1,"Tablet", "Hardware",
+                "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        productCategoryData.add(tablet);
+
+        ProductCategory laptop = new ProductCategory(
+                2,"Laptop", "Hardware",
+                "These are portable laptops.");
+        productCategoryData.add(laptop);
+
+        ProductCategory mobile = new ProductCategory(
+                3,"Mobile", "Hardware",
+                "These are mobile phones.");
+        productCategoryData.add(mobile);
+
+        productCategoryData.getAll().get(0).
+
+    }
+
+    @Test
+    void testGetAllMethod() {
+
+        int numOfAddedCategories = 3;
+        assertEquals(numOfAddedCategories, productCategoryData.getAll().size());
+
+        for (ProductCategory pc: productCategoryData.getAll()) {
+        }
     }
 
     @Test
     public void testAddMethod() {
 
-        int listSizeBefore = productCategoryDao.getAll().size();
-        System.err.println(productCategoryDao.getAll().size());
-        productCategoryDao.add(new com.codecool.shop.model.ProductCategory("info1", "info2", "info3"));
-        int listSizeAfter = productCategoryDao.getAll().size();
 
-        assertEquals(++listSizeBefore, listSizeAfter);
     }
 
     @Test
