@@ -141,6 +141,9 @@ INSERT INTO "products" (name, price, description, supplier_id, category_id, curr
 INSERT INTO "products" (name, price, description, supplier_id, category_id, currency_id, image_path) VALUES ('Amazon Fire HD 8', 89, 'Amazon''s latest Fire HD 8 tablet is a great value for media consumption.', 1, 1, 1, '/static/img/product_3.jpg');
 SELECT pg_catalog.setval('products_id_seq', 3, true);
 
+INSERT INTO "users" (name, email, password, billing_address, shipping_address) VALUES ('test', 'szabolcs.adam@webmillers.hu', 'password', 'test', 'test');
+
+
 
 
 
