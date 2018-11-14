@@ -1,6 +1,9 @@
+import com.codecool.shop.dao.DbConnection;
 import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.model.ProductCategory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoryDaoTest {
 
-    private static ProductCategoryDao productCategoryData = ProductCategoryDaoMem.getInstance();
+    private static ProductCategoryDao productCategoryData = ProductCategoryDaoJdbc.getInstance();
 
     @BeforeAll
     public static void setUp() {
+
+        DbConnection.setTestingDatabase();
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory(
@@ -31,16 +36,15 @@ class ProductCategoryDaoTest {
                 3,"Mobile", "Hardware",
                 "These are mobile phones.");
         productCategoryData.add(mobile);
-
-        productCategoryData.getAll().get(0).
-
     }
+
+
 
     @Test
     void testGetAllMethod() {
 
         int numOfAddedCategories = 3;
-        assertEquals(numOfAddedCategories, productCategoryData.getAll().size());
+        //assertEquals(numOfAddedCategories, productCategoryData.getAll().size());
 
         for (ProductCategory pc: productCategoryData.getAll()) {
         }
