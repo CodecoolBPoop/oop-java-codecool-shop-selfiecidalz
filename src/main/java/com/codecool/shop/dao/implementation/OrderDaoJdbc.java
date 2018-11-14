@@ -60,25 +60,7 @@ public class OrderDaoJdbc {
     }
 
     public void addToCartList(int orderId, int quantity, int productId) {
-        String checkQuery = "SELECT IF EXISTS(SELECT * FROM lineitems WHERE order_id=? AND product_id=?";
-        try (Connection connection = DbConnection.getConnection();
-            PreparedStatement check = connection.prepareStatement(checkQuery))
-        {
-            check.setInt(1, orderId);
-            check.setInt(2, productId);
-            ResultSet resultSet = check.executeQuery();
-            if (resultSet.getBoolean("exists")) {
-                PreparedStatement update = connection.prepareStatement("UPDATE lineitems SET quantity=? WHERE order_id=? AND product_id=?");
-                update.setInt(1, quantity);
-                update.setInt(2, orderId);
-                update.setInt(3, productId);
-                update.execute();
-            } else {
-                lineItemDaoJdbc.add(orderId, quantity, productId);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        lineItemDaoJdbc.add(orderId, quantity, productId);
     }
 
     public void removeFromCartList(){
@@ -92,7 +74,8 @@ public class OrderDaoJdbc {
         {
             statement.setInt(1, userId);
             statement.setInt(2, total);
-            statement.setDate(3, new Date(System.currentTimeMillis());
+            statement.setDate(3, new Date(System.currentTimeMillis()));
+            statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
