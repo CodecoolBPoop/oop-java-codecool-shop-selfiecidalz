@@ -1,5 +1,6 @@
 package com.codecool.shop.ajaxHandler;
 
+import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.orderData.LineItem;
@@ -19,7 +20,7 @@ public class RefreshQuantity extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         int productId = Integer.parseInt(req.getParameter("id"));
-        Product product = ProductDaoMem.getInstance().find(productId);
+        Product product = ProductDaoJdbc.getInstance().find(productId);
 
         Order.getInstance().changeQuantity(product, quantity);
     }
