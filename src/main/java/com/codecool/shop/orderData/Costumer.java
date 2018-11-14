@@ -20,4 +20,12 @@ public class Costumer {
             instance = new Costumer(name, email, billingAddress, shippingAddress);
         return instance;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

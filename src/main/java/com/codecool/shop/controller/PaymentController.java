@@ -5,7 +5,6 @@ import com.codecool.shop.orderData.Costumer;
 import com.codecool.shop.orderData.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +17,7 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // change here for sql
         Costumer costumer = Costumer.getInstance(
                 req.getParameter("name"),

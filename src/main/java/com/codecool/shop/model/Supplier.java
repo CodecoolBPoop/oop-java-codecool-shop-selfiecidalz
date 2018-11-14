@@ -6,8 +6,10 @@ import java.util.List;
 public class Supplier extends BaseModel {
     private List<Product> products;
 
-    public Supplier(String name, String description) {
+    public Supplier(int id, String name, String description) {
         super(name);
+        this.id = id;
+        this.description = description;
         this.products = new ArrayList<>();
     }
 

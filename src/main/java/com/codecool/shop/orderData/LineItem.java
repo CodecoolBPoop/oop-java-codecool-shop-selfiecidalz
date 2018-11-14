@@ -55,4 +55,9 @@ public class LineItem {
     public boolean compareProductId(int id) {
         return product.getId() == id;
     }
+
+    @Override
+    public String toString() {
+        return "Item: " + productName + ", quantity: " + quantity + ", subtotal: " + subTotalPrice;
+    }
 }
