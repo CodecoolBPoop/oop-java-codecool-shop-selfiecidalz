@@ -8,18 +8,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.util.*;
 import java.util.List;
 
 public class OrderDaoJdbc {
 
     private Date date;
+    private static LineItemDaoJdbc lineItemDaoJdbc = new LineItemDaoJdbc();
+    private static OrderDaoJdbc instance = null;
+    private int id;
 
-    public OrderDaoJdbc() {
-        this.date = new Date();
+    private OrderDaoJdbc(int id) {
+        this.date = new Date(System.currentTimeMillis());
+        this.id = id;
     }
 
-    public void deleteOrder(int id) {
+    public static OrderDaoJdbc getInstance() {
+        if(instance == null)
+            instance = new OrderDaoJdbc(1);
+        return instance;
+    }
+
+    /*public void deleteOrder(int id) {
         String deleteQuery = "REMOVE FROM orders WHERE id=?";
         try (Connection connection = DbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(deleteQuery))
@@ -63,14 +74,29 @@ public class OrderDaoJdbc {
                 update.setInt(3, productId);
                 update.execute();
             } else {
-                LineItemDaoJdbc.add(orderId, quantity, productId);
+                lineItemDaoJdbc.add(orderId, quantity, productId);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void removeFromCartList()
+    public void removeFromCartList(){
+
+    }*/
+
+    public void add(int userId, int total, Date date) {
+        String addQuery = "INSERT INTO orders (user_id, total, date) VALUES (?, ?, ?)";
+        try (Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(addQuery))
+        {
+            statement.setInt(1, userId);
+            statement.setInt(2, total);
+            statement.setDate(3, new Date(System.currentTimeMillis());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
