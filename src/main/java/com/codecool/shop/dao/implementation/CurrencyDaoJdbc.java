@@ -36,6 +36,7 @@ public class CurrencyDaoJdbc {
 
     public static String findCurrency(int id) {
         String query = "SELECT name FROM currencies WHERE id=?;";
+        String currencyId = "";
         try {
             Connection connection = DbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
@@ -43,7 +44,10 @@ public class CurrencyDaoJdbc {
             statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
-            return resultSet.getString("name");
+            while(resultSet.next()){
+                currencyId = resultSet.getString("name");
+            }
+            return currencyId;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,13 +55,17 @@ public class CurrencyDaoJdbc {
     }
 
     public static int getIdByName(String name){
+        String query =
+                "SELECT id FROM currencies WHERE name=?;";
+        int currencyId = -1;
         try {
-            String query =
-                    "SELECT id FROM currencies WHERE name=?;";
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            return resultSet.getInt("id");
+            while(resultSet.next()){
+                 currencyId = resultSet.getInt("id");
+            }
+            return currencyId;
         } catch (SQLException e){
             e.printStackTrace();
         }

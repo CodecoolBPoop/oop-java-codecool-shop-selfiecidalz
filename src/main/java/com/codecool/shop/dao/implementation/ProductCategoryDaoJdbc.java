@@ -42,7 +42,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public ProductCategory find(int id) {
-        String addQuery = "SELECT name, department, description FROM categories WHERE id=?;";
+        String addQuery = "SELECT id, name, department, description FROM categories WHERE id=?;";
         try (Connection connection = DbConnection.getConnection();
              PreparedStatement find = connection.prepareStatement(addQuery)
         ){
@@ -50,7 +50,9 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
             ResultSet resultSet = find.executeQuery();
             if (resultSet.next()) {
-                ProductCategory result = new ProductCategory(resultSet.getString("name"),
+                ProductCategory result = new ProductCategory(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("department"),
                         resultSet.getString("description"));
                 return result;
@@ -84,7 +86,9 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         ){
             ResultSet resultSet = getAllCategories.executeQuery();
             while(resultSet.next()) {
-                ProductCategory pc = new ProductCategory(resultSet.getString("name"),
+                ProductCategory pc = new ProductCategory(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
                         resultSet.getString("department"),
                         resultSet.getString("description"));
                 result.add(pc);

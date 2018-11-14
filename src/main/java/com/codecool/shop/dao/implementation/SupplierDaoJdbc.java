@@ -42,7 +42,7 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public Supplier find(int id) {
-        String addQuery = "SELECT name, department, description FROM suppliers WHERE id=?;";
+        String addQuery = "SELECT name, description FROM suppliers WHERE id=?;";
         try (Connection connection = DbConnection.getConnection();
              PreparedStatement add = connection.prepareStatement(addQuery)
         ){
@@ -96,11 +96,16 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     public static int getSupplierIdByName(String name){
         String query = "SELECT id FROM suppliers WHERE name=?";
+        int supplierId = -1;
         try {
             Connection connection = DbConnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,name);
             ResultSet result = statement.executeQuery();
-            return result.getInt("id");
+            while(result.next()){
+                supplierId = result.getInt("id");
+            }
+            return supplierId;
         } catch (SQLException e){
             e.printStackTrace();
         }
