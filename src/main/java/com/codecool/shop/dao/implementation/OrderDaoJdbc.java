@@ -59,27 +59,33 @@ public class OrderDaoJdbc {
         return result;
     }
 
-    public void addToCartList(int orderId, int quantity, int productId) {
-        lineItemDaoJdbc.add(orderId, quantity, productId);
-    }
-
     public void removeFromCartList(){
 
     }*/
 
-    public void add(int userId, int total, Date date) {
+    public void add(int userId, double total, Date date) {
         String addQuery = "INSERT INTO orders (user_id, total, date) VALUES (?, ?, ?)";
         try (Connection connection = DbConnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(addQuery))
         {
             statement.setInt(1, userId);
-            statement.setInt(2, total);
+            statement.setDouble(2, total);
             statement.setDate(3, new Date(System.currentTimeMillis()));
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void addToCartList(int orderId, int quantity, int productId) {
+        lineItemDaoJdbc.add(orderId, quantity++, productId);
+    }
+
+    public void getOrderById(int orderId) {
+
+    }
+
+
 
 
 
