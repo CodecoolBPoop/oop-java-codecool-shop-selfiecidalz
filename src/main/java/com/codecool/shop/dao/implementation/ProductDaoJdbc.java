@@ -62,6 +62,7 @@ public class ProductDaoJdbc implements ProductDao {
             statement.setInt(1,id);
             ResultSet result = statement.executeQuery();
             Product product = new Product(
+                    result.getInt("id"),
                     result.getString("name"),
                     result.getFloat("price"),
                     CurrencyDaoJdbc.findCurrency(result.getInt("currency_id")),
@@ -102,6 +103,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 result.add(new Product(
+                        resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getFloat("price"),
                         CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
@@ -129,6 +131,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 result.add(new Product(
+                        resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getFloat("price"),
                         CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
@@ -156,6 +159,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 result.add(new Product(
+                        resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getFloat("price"),
                         CurrencyDaoJdbc.findCurrency(resultSet.getInt("currency_id")),
