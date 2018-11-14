@@ -56,21 +56,24 @@ public class ProductDaoJdbc implements ProductDao {
     public Product find(int id) {
         String query =
                 "SELECT * FROM products WHERE id=?";
+        Product product = null;
         try {
             Connection connection = DbConnection.getConnection();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1,id);
             ResultSet result = statement.executeQuery();
-            Product product = new Product(
-                    result.getInt("id"),
-                    result.getString("name"),
-                    result.getFloat("price"),
-                    CurrencyDaoJdbc.findCurrency(result.getInt("currency_id")),
-                    result.getString("description"),
-                    ProductCategoryDaoJdbc.getInstance().find(result.getInt("category_id")),
-                    SupplierDaoJdbc.getInstance().find(result.getInt("supplier_id")),
-                    result.getString("image_path")
-            );
+            while(result.next()){
+                 product = new Product(
+                        result.getInt("id"),
+                        result.getString("name"),
+                        result.getFloat("price"),
+                        CurrencyDaoJdbc.findCurrency(result.getInt("currency_id")),
+                        result.getString("description"),
+                        ProductCategoryDaoJdbc.getInstance().find(result.getInt("category_id")),
+                        SupplierDaoJdbc.getInstance().find(result.getInt("supplier_id")),
+                        result.getString("image_path")
+                );
+            }
             return product;
         } catch (SQLException e){
             e.printStackTrace();
