@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet {
 
         if (id == null && supplierId == null) {
             params.put("actual_title", productCategoryDataStore.find(1));
-            params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+            params.put("products", productDataStore.getAll());
         } else if (id != null) {
             params.put("actual_title", productCategoryDataStore.find(Integer.parseInt(id)));
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(Integer.parseInt(id))));
