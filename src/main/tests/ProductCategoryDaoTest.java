@@ -18,8 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoryDaoTest {
 
-    private static boolean isDbTesting = true;
+    private static boolean isDbTesting = false;
     private static ProductCategoryDao productCategoryData;
+    private static List<ProductCategory> categoriesAdded = new ArrayList<>();
 
     @BeforeAll
     public static void setUp() {
@@ -33,18 +34,21 @@ class ProductCategoryDaoTest {
         //setting up a new product category
         ProductCategory tablet = new ProductCategory(
                 1,"Tablet", "Hardware",
-                "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+                "A tablet computer, commonly shortened to tablet.");
         productCategoryData.add(tablet);
+        categoriesAdded.add(tablet);
 
         ProductCategory laptop = new ProductCategory(
                 2,"Laptop", "Hardware",
                 "These are portable laptops.");
         productCategoryData.add(laptop);
+        categoriesAdded.add(laptop);
 
         ProductCategory mobile = new ProductCategory(
                 3,"Mobile", "Hardware",
                 "These are mobile phones.");
         productCategoryData.add(mobile);
+        categoriesAdded.add(mobile);
     }
 
     @AfterAll
@@ -69,20 +73,29 @@ class ProductCategoryDaoTest {
     }
 
     @Test
-    void isGetAllMethodReturnsTheSameObjectAdded() {
+    void isGetAllMethodReturnsTheSameObjectsAdded() {
 
-        ProductCategory television = new ProductCategory(
-                4,"Television", "Hardware",
-                "These are televisions.");
-        productCategoryData.add(television);
-        //assertEquals(television, productCategoryData.getAll().stream().findFirst(x -> x == television));
+        assertEquals(categoriesAdded, productCategoryData.getAll());
     }
 
 
     @Test
-    void testRemoveMethod() {
+    void isAfterRemoveDataListGetsShorter() {
 
+        int idOfAddedObj = productCategoryData.getAll().get(0).getId();
+        productCategoryData.remove(idOfAddedObj);
+        assertEquals(productCategoryData.getAll().size(), categoriesAdded.size() - 1);
+
+        productCategoryData.add(categoriesAdded.get(0));
 
     }
 
+    @Test
+    void findGivesBackSameObject() {
+        // id auto increment
+
+        ProductCategory addedObject = productCategoryData.getAll().get(0);
+
+        assertEquals(productCategoryData.find(addedObject.getId()), addedObject);
+    }
 }

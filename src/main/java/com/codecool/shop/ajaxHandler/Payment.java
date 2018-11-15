@@ -20,7 +20,7 @@ public class Payment extends HttpServlet {
     private static int fileNameExtension = 1;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         JSONObject orderJson = new JSONObject();
         JSONArray jsonArr = new JSONArray();

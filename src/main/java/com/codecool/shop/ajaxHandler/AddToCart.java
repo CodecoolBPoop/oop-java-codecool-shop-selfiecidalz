@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AddToCart extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         int productId = Integer.parseInt(req.getParameter("id"));
         Product product = ProductDaoJdbc.getInstance().find(productId);
 

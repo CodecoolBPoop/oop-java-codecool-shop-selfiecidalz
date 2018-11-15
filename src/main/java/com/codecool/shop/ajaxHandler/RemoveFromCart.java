@@ -16,7 +16,7 @@ import java.io.IOException;
 public class RemoveFromCart extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     // remove items
         String id = req.getParameter("id");
         int productId = Integer.parseInt(id);

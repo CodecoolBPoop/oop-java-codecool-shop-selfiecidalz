@@ -18,7 +18,7 @@ import java.util.List;
 public class CartController extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         List<LineItem> shoppingCartList = Order.getInstance().getCartList();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());

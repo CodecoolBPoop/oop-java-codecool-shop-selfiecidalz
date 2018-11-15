@@ -16,7 +16,7 @@ import java.io.IOException;
 public class RefreshQuantity extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         int productId = Integer.parseInt(req.getParameter("id"));
         Product product = ProductDaoMem.getInstance().find(productId);
