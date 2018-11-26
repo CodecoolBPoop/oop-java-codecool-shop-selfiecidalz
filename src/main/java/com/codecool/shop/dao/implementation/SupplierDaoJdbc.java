@@ -35,6 +35,8 @@ public class SupplierDaoJdbc implements SupplierDao {
              addSupplier.setString(1, supplier.getName());
              addSupplier.setString(2, supplier.getDescription());
              addSupplier.execute();
+            addSupplier.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,6 +56,9 @@ public class SupplierDaoJdbc implements SupplierDao {
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("description"));
+                add.close();
+                connection.close();
+                resultSet.close();
                 return result;
             } else {
                 return null;
@@ -71,6 +76,8 @@ public class SupplierDaoJdbc implements SupplierDao {
         ){
             remove.setInt(1, id);
             remove.execute();
+            remove.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,6 +98,9 @@ public class SupplierDaoJdbc implements SupplierDao {
                         resultSet.getString("name"),
                         resultSet.getString("description")));
             }
+            getAllCategories.close();
+            connection.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,6 +119,9 @@ public class SupplierDaoJdbc implements SupplierDao {
             while(result.next()){
                 supplierId = result.getInt("id");
             }
+            statement.close();
+            connection.close();
+            result.close();
             return supplierId;
         } catch (SQLException e){
             e.printStackTrace();

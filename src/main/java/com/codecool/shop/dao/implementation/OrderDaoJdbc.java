@@ -72,6 +72,8 @@ public class OrderDaoJdbc {
             statement.setDouble(2, total);
             statement.setDate(3, new Date(System.currentTimeMillis()));
             statement.execute();
+            connection.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,8 +83,22 @@ public class OrderDaoJdbc {
         lineItemDaoJdbc.add(orderId, quantity++, productId);
     }
 
-    public void getOrderById(int orderId) {
-
+    public int getNextOrderId() {
+        int nextId = -1;
+        try (Connection connection = DbConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(id) AS id FROM orders"))
+        {
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                nextId = resultSet.getInt("id");
+            }
+            connection.close();
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nextId;
     }
 
 
