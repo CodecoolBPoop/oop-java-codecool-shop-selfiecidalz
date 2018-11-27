@@ -1,7 +1,7 @@
 package com.codecool.shop.ajaxHandler;
 
-import com.codecool.shop.dao.implementation.LineItemDaoJdbc;
-import com.codecool.shop.dao.implementation.OrderDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.LineItemDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.OrderDaoJdbc;
 import com.codecool.shop.orderData.LineItem;
 import com.codecool.shop.orderData.Order;
 import com.codecool.shop.orderData.SendEmail;

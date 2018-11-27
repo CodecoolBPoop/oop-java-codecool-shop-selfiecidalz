@@ -1,9 +1,7 @@
 package com.codecool.shop.ajaxHandler;
 
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.jdbc.ProductDaoJdbc;
 import com.codecool.shop.model.Product;
-import com.codecool.shop.orderData.LineItem;
 import com.codecool.shop.orderData.Order;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

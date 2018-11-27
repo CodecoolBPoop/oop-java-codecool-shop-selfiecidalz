@@ -1,16 +1,12 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.jdbc;
 
 import com.codecool.shop.dao.DbConnection;
-import com.codecool.shop.orderData.LineItem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.sql.Date;
-import java.util.*;
-import java.util.List;
 
 public class OrderDaoJdbc {
 

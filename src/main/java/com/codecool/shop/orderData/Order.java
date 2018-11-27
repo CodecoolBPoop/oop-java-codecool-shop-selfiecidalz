@@ -1,9 +1,8 @@
 package com.codecool.shop.orderData;
 
-import com.codecool.shop.dao.implementation.OrderDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.OrderDaoJdbc;
 import com.codecool.shop.model.Product;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
