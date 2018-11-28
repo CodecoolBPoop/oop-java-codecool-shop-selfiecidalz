@@ -22,5 +22,6 @@ public class RegisterHandler extends HttpServlet {
         String shippingAddress = req.getParameter("shipping");
         Customer customer = new Customer(username, email, billingAddress, shippingAddress);
         customer.setPassword(password);
+        UsersDaoJdbc.getInstance().register(customer);
     }
 }
