@@ -21,3 +21,4 @@ public class RegisterHandler extends HttpServlet {
         String shippingAddress = req.getParameter("shipping");
 
     }
+}
