@@ -27,4 +27,16 @@ public class Customer {
     public String getName() {
         return name;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
 }
