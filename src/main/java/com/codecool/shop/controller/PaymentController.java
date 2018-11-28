@@ -19,7 +19,7 @@ public class PaymentController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // change here for sql
-        Costumer costumer = Costumer.getInstance(
+        Costumer costumer = new Costumer(
                 req.getParameter("name"),
                 req.getParameter("email"),
                 req.getParameter("address"),
