@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- own js -->
-    <script type="text/javascript" src="/static/javascript/addToCart.js" defer></script>
+    <script type="text/javascript" src="/static/javascript/register.js" defer></script>
 
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -49,7 +49,7 @@
 <div class="container">
     <div class="row">
         <div class="item col-xs-6 col-lg-6 align-self-center">
-            <form method="post" action="/register">
+            <form method="post" action="/register-handler">
                 <div class="form-group">
                     <label for="user-name">Username</label>
                     <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" min="4" max="10">
@@ -73,7 +73,7 @@
                     <label for="shipping-address">Billing address</label>
                     <input type="text" class="form-control" id="shipping-address" name="shipping" placeholder="Shipping address">
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary register-button">Register</button>
             </form>
         </div>
     </div>

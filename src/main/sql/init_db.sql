@@ -142,6 +142,7 @@ INSERT INTO "products" (name, price, description, supplier_id, category_id, curr
 SELECT pg_catalog.setval('products_id_seq', 3, true);
 
 INSERT INTO "users" (name, email, password, billing_address, shipping_address) VALUES ('test', 'szabolcs.adam@webmillers.hu', 'password', 'test', 'test');
+SELECT pg_catalog.setval('users_id_seq', 1, true);
 
 
 

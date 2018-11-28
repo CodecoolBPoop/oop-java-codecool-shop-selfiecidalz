@@ -1,6 +1,7 @@
 package com.codecool.shop.ajaxHandler;
 
 import com.codecool.shop.bcrypt.BCrypt;
+import com.codecool.shop.dao.implementation.jdbc.UsersDaoJdbc;
 import com.codecool.shop.orderData.Customer;
 
 import javax.servlet.ServletException;
@@ -23,5 +24,6 @@ public class RegisterHandler extends HttpServlet {
         Customer customer = new Customer(username, email, billingAddress, shippingAddress);
         customer.setPassword(password);
         UsersDaoJdbc.getInstance().register(customer);
+        resp.sendRedirect("/");
     }
 }

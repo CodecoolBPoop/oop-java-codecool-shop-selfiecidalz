@@ -39,4 +39,15 @@ public class Customer {
     public String getShippingAddress() {
         return shippingAddress;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", billingAddress='" + billingAddress + '\'' +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
