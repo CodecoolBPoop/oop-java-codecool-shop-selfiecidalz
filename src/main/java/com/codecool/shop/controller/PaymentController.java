@@ -1,7 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.orderData.Costumer;
+import com.codecool.shop.orderData.Customer;
 import com.codecool.shop.orderData.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -19,13 +19,13 @@ public class PaymentController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // change here for sql
-        Costumer costumer = new Costumer(
+        Customer customer = new Customer(
                 req.getParameter("name"),
                 req.getParameter("email"),
                 req.getParameter("address"),
                 req.getParameter("shipping-address")
         );
-        Order.getInstance().setCostumer(costumer);
+        Order.getInstance().setCustomer(customer);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

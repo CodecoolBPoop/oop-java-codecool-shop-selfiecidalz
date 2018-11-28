@@ -1,6 +1,7 @@
 package com.codecool.shop.ajaxHandler;
 
 import com.codecool.shop.bcrypt.BCrypt;
+import com.codecool.shop.orderData.Customer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,7 @@ public class RegisterHandler extends HttpServlet {
         String email = req.getParameter("email");
         String billingAddress = req.getParameter("billing");
         String shippingAddress = req.getParameter("shipping");
-
+        Customer customer = new Customer(username, email, billingAddress, shippingAddress);
+        customer.setPassword(password);
     }
 }

@@ -42,8 +42,8 @@ public class Payment extends HttpServlet {
         orderJson.put("cartList", jsonArr);
 
         JSONObject customerInfo = new JSONObject();
-        customerInfo.put("email", Order.getInstance().getCostumer().getEmail());
-        customerInfo.put("name", Order.getInstance().getCostumer().getName());
+        customerInfo.put("email", Order.getInstance().getCustomer().getEmail());
+        customerInfo.put("name", Order.getInstance().getCustomer().getName());
         orderJson.put("customer", customerInfo);
 
         FileWriter fileWriter = new FileWriter("src/main/webapp/static/json/order" + fileNameExtension++ + ".json");

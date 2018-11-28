@@ -10,7 +10,7 @@ import java.util.List;
 public class Order {
     private List<LineItem> cartList = new ArrayList<>();
     private double total;
-    private Costumer costumer;
+    private Customer customer;
     private Date date;
     private static Order instance = null;
     private int id;
@@ -59,8 +59,8 @@ public class Order {
         setTotal();
     }
 
-    public void setCostumer(Costumer costumer) {
-        this.costumer = costumer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public void setTotal() {
@@ -104,8 +104,8 @@ public class Order {
         }
     }
 
-    public Costumer getCostumer() {
-        return costumer;
+    public Customer getCustomer() {
+        return customer;
     }
 
     @Override
