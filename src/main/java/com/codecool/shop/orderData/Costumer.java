@@ -8,18 +8,13 @@ public class Costumer {
     private String shippingAddress;
     private static Costumer instance;
 
-    private Costumer(String name,  String email, String billingAddress, String shippingAddress) {
+    public Costumer(String name,  String email, String billingAddress, String shippingAddress) {
         this.name = name;
         this.email = email;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
     }
 
-    public static Costumer getInstance(String name, String email, String billingAddress, String shippingAddress) {
-        if(instance == null)
-            instance = new Costumer(name, email, billingAddress, shippingAddress);
-        return instance;
-    }
 
     public String getEmail() {
         return email;
