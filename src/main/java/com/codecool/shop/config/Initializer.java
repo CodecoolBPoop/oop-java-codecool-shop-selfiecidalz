@@ -3,9 +3,9 @@ package com.codecool.shop.config;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.ProductDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.SupplierDaoJdbc;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

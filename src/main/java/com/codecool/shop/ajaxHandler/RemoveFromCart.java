@@ -1,6 +1,6 @@
 package com.codecool.shop.ajaxHandler;
 
-import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.jdbc.ProductDaoJdbc;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.orderData.Order;
 
@@ -20,7 +20,7 @@ public class RemoveFromCart extends HttpServlet {
     // remove items
         String id = req.getParameter("id");
         int productId = Integer.parseInt(id);
-        Product product = ProductDaoMem.getInstance().find(productId);
+        Product product = ProductDaoJdbc.getInstance().find(productId);
 
         Order.getInstance().removeFromCartList(product);
         Order.getInstance().setTotal();

@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.jdbc;
 
 import com.codecool.shop.dao.DbConnection;
 import com.codecool.shop.dao.ProductDao;
@@ -47,6 +47,7 @@ public class ProductDaoJdbc implements ProductDao {
             statement.setInt(6, currencyId);
             statement.setString(7, product.getImagePath());
             statement.execute();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,6 +75,9 @@ public class ProductDaoJdbc implements ProductDao {
                         result.getString("image_path")
                 );
             }
+            statement.close();
+            connection.close();
+            result.close();
             return product;
         } catch (SQLException e){
             e.printStackTrace();
@@ -90,6 +94,8 @@ public class ProductDaoJdbc implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             statement.execute();
+            statement.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,6 +122,9 @@ public class ProductDaoJdbc implements ProductDao {
                         resultSet.getString("image_path")
                 ));
             }
+            statement.close();
+            connection.close();
+            resultSet.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -144,6 +153,10 @@ public class ProductDaoJdbc implements ProductDao {
                         resultSet.getString("image_path")
                 ));
             }
+            statement.close();
+            connection.close();
+            resultSet.close();
+
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -172,6 +185,10 @@ public class ProductDaoJdbc implements ProductDao {
                         resultSet.getString("image_path")
                 ));
             }
+            statement.close();
+            connection.close();
+            resultSet.close();
+
         } catch (SQLException e){
             e.printStackTrace();
         }

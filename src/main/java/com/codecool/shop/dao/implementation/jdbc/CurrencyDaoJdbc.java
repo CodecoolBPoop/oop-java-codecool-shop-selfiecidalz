@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.jdbc;
 
 import com.codecool.shop.dao.DbConnection;
 
@@ -28,7 +28,12 @@ public class CurrencyDaoJdbc {
                     "INSERT INTO currencies(name) VALUES(?)";
             PreparedStatement statement = getConnection().prepareStatement(query);
             statement.setString(1, name);
-            statement.execute();
+            statement.executeQuery();
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -47,6 +52,9 @@ public class CurrencyDaoJdbc {
             while(resultSet.next()){
                 currencyId = resultSet.getString("name");
             }
+            connection.close();
+            statement.close();
+            resultSet.close();
             return currencyId;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,6 +73,8 @@ public class CurrencyDaoJdbc {
             while(resultSet.next()){
                  currencyId = resultSet.getInt("id");
             }
+            resultSet.close();
+            statement.close();
             return currencyId;
         } catch (SQLException e){
             e.printStackTrace();
@@ -72,7 +82,7 @@ public class CurrencyDaoJdbc {
         return -1;
     }
 
-    private  static Connection getConnection(){
+    private static Connection getConnection(){
         try{
             return DbConnection.getConnection();
         } catch (SQLException e){
@@ -80,5 +90,14 @@ public class CurrencyDaoJdbc {
             System.out.println("SQL Exception thrown");
         }
         return null;
+    }
+
+    private static void executeQuery(String query) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

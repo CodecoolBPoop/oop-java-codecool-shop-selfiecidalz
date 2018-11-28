@@ -1,8 +1,8 @@
 package com.codecool.shop.orderData;
 
+import com.codecool.shop.dao.implementation.jdbc.OrderDaoJdbc;
 import com.codecool.shop.model.Product;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,12 @@ public class Order {
     private Costumer costumer;
     private Date date;
     private static Order instance = null;
+    private int id;
 
     private Order() {
         this.date = new Date();
+        OrderDaoJdbc orderDaoJdbc = OrderDaoJdbc.getInstance();
+        this.id = orderDaoJdbc.getNextOrderId();
     }
 
     public void deleteOrder() {

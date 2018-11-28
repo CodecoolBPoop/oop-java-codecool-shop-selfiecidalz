@@ -3,8 +3,10 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.implementation.jdbc.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.ProductDaoJdbc;
+import com.codecool.shop.dao.implementation.jdbc.SupplierDaoJdbc;
 import com.codecool.shop.orderData.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.*;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {

@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao.implementation.jdbc;
 
 import com.codecool.shop.dao.DbConnection;
 import com.codecool.shop.dao.ProductCategoryDao;
@@ -55,6 +55,9 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
                         resultSet.getString("name"),
                         resultSet.getString("department"),
                         resultSet.getString("description"));
+                connection.close();
+                resultSet.close();
+                find.close();
                 return result;
             } else {
                 return null;
@@ -72,6 +75,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         ){
             remove.setInt(1, id);
             remove.execute();
+            connection.close();
+            remove.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,6 +98,9 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
                         resultSet.getString("description"));
                 result.add(pc);
             }
+            connection.close();
+            getAllCategories.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,6 +116,9 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             ResultSet resultSet = getItByName.executeQuery();
             if (resultSet.next()) {
                 int id = resultSet.getInt("id");
+                connection.close();
+                getItByName.close();
+                resultSet.close();
                 return id;
             }
         } catch (SQLException e) {
