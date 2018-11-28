@@ -6,6 +6,7 @@ import com.codecool.shop.orderData.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsersDaoJdbc implements UserDao {
@@ -58,7 +59,22 @@ public class UsersDaoJdbc implements UserDao {
 
     @Override
     public String getHashByUsername(String username) {
+        getConnection();
+        try {
+            String query =
+                    "SELECT password FROM users WHERE name=?";
+            PreparedStatement statement = connection.prepareStatement(query);
 
+            statement.setString(1, username);
+            ResultSet result = statement.executeQuery();
+            if(result.next()){
+                return result.getString("name");
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
