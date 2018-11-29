@@ -34,26 +34,58 @@ nav i {
 }
 
 .login-drop-down span {
-    font-size: 80%;
+    font-size: 14px;
 }
 
 .fb-button {
-    background-color: #4267b2;
+    background-color:#3b5998;
+}
+
+.fb-button:hover {
+    background-color:#496ebc
 }
 
 .twitter-button {
-    background-color: #5bc0de;
+    background-color:#55acee;
+}
+
+.twitter-button:hover {
+    background-color:#59b5fa;
 }
 
 .social-buttons button {
     width: 100px;
-    height: 30px;
+    height: 35px;
     text-align: center;
     color: white;
     border: none;
     border-radius: 4px;
+    margin: 5px 0 5px 0;
 }
 
 .social-buttons button:hover{
     cursor: pointer;
+}
+
+.log-in-submit {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    height: 33px;
+    background-color: #428bca;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.log-in-submit:hover {
+    cursor: pointer;
+    background-color: #428bcade;
+}
+
+.login-drop-down form {
+    margin-top: 5px;
+}
+
+.login-drop-down form a {
+    font-size: 11px;
 }

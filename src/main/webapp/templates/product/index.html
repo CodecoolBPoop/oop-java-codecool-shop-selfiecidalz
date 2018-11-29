@@ -69,18 +69,25 @@
                 </button>
                 </a>
             </li>
+
+            <!-- if logged in -->
             <li class="nav-item">
-                <a th:if="!${session.username}" href="/register" class="nav-link"><i class="far fa-user"></i>Sign up</a>
+                <a th:text="${session.username}" th:if="${session.username}" class="nav-link"></a>
             </li>
+            <li class="nav-item" th:if="${session.username}">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+
+            <!-- else -->
             <li class="nav-item">
-                <a class="nav-link" th:href="!${session.username} ? '/login' : '/logout'"
-                th:text="!${session.username} ? 'Log in' : 'Log out'">Log in</a>
-            <li class="dropdown nav-item">
-                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Log in<span class="caret"></span></a>
+            <a th:if="!${session.username}" href="/register" class="nav-link"><i class="far fa-user"></i>Sign up</a>
+            </li>
+
+            <li class="dropdown nav-item" th:if="!${session.username}">
+                <a class="dropdown-toggle nav-link" href="/login" data-toggle="dropdown">Log in<span class="caret"></span></a>
                 <!-- login dropdown -->
                 <ul class="dropdown-menu dropdown-lr animated flipInX" role="menu">
                     <div class="col-lg-12 login-drop-down">
-
                         <div>
                             <span>log in via</span>
                             <div class="social-buttons">
@@ -89,25 +96,21 @@
                             </div>
                             <span>or</span>
                         </div>
-                        <form id="ajax-register-form" action="http://phpoll.com/register/process" method="post" role="form" autocomplete="off">
+                        <form id="ajax-register-form" action="/login" method="post" role="form" autocomplete="off">
                             <div class="form-group">
                                 <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                <a href="#">Forget the password?</a>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-6 col-xs-offset-3">
-                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-info" value="Log in">
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="log-in-submit" type="submit">Sign in</button>
                             <input type="hidden" class="hide" name="token" id="token" value="7c6f19960d63f53fcd05c3e0cbc434c0">
                         </form>
                     </div>
                 </ul>
             </li>
+
         </ul>
     </div>
 </nav>
