@@ -91,4 +91,9 @@ public class UsersDaoJdbc implements UserDao {
             System.out.println("SQL Exception thrown");
         }
     }
+
+    public int getIdByUserName(String username) {
+        getConnection();
+
+    }
 }
