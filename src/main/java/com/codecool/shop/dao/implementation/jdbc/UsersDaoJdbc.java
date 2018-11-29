@@ -68,7 +68,7 @@ public class UsersDaoJdbc implements UserDao {
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
             if(result.next()){
-                return result.getString("name");
+                return result.getString("password");
             }
             statement.close();
             connection.close();
