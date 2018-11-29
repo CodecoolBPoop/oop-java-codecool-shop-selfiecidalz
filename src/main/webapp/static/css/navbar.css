@@ -1,0 +1,11 @@
+nav {
+    margin-bottom: 25px;
+}
+
+nav ul {
+    margin-right: 50px;
+}
+
+nav ul:first-child {
+    padding-right: 20px;
+}
