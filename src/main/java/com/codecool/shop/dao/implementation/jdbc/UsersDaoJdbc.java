@@ -83,6 +83,25 @@ public class UsersDaoJdbc implements UserDao {
         return null;
     }
 
+    public int getIdByUserName(String username) {
+        getConnection();
+        try {
+            String query =
+                    "SELECT id FROM users WHERE name=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, username);
+            ResultSet result = statement.executeQuery();
+            if(result.next()){
+                return result.getInt("id");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
     private void getConnection(){
         try{
             this.connection = DbConnection.getConnection();
@@ -92,8 +111,4 @@ public class UsersDaoJdbc implements UserDao {
         }
     }
 
-    public int getIdByUserName(String username) {
-        getConnection();
-
-    }
 }
