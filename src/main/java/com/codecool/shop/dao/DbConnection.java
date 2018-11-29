@@ -5,7 +5,7 @@ public class DbConnection {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "paradicsom3"; // "postgres";
+    private static final String DB_PASSWORD = "postgres"; // "postgres";
 
     public static java.sql.Connection getConnection() throws SQLException {
         return DriverManager.getConnection(

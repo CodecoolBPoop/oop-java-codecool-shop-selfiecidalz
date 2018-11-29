@@ -63,15 +63,18 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a href="/cart">
-                    <button class="btn btn-outline-success cart-button">
-                        <i class="fas fa-cart-arrow-down"></i>
-                        <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
-                    </button>
+                <button class="btn btn-outline-success cart-button">
+                    <i class="fas fa-cart-arrow-down"></i>
+                    <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
+                </button>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"><i class="far fa-user"></i>Sign up</a>
+                <a th:if="!${session.username}" href="/register" class="nav-link"><i class="far fa-user"></i>Sign up</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="!${session.username} ? '/login' : '/logout'"
+                th:text="!${session.username} ? 'Log in' : 'Log out'">Log in</a>
             <li class="dropdown nav-item">
                 <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Log in<span class="caret"></span></a>
                 <!-- login dropdown -->

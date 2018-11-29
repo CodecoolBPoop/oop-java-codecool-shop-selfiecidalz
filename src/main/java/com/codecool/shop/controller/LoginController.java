@@ -4,6 +4,7 @@ package com.codecool.shop.controller;
 import com.codecool.shop.bcrypt.BCrypt;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.jdbc.UsersDaoJdbc;
+import com.codecool.shop.orderData.Customer;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -31,10 +32,17 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        Customer customer = UsersDaoJdbc.getInstance().getCostumerByUsername(username);
+        String billingAddress = customer.getBillingAddress();
+        String shippingAddress = customer.getShippingAddress();
+        String email = customer.getEmail();
         if (BCrypt.checkpw(password, UsersDaoJdbc.getInstance().getHashByUsername(username))) {
             HttpSession session = req.getSession(true);
             session.setAttribute("username", username);
             session.setAttribute("password", password);
+            session.setAttribute("email", email);
+            session.setAttribute("billing", billingAddress);
+            session.setAttribute("shipping", shippingAddress);
             resp.sendRedirect("/");
         }
     }
