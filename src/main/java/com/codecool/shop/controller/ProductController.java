@@ -36,6 +36,7 @@ public class ProductController extends HttpServlet {
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", supplierDataStore.getAll());
         params.put("cartItemCount", Order.getInstance().getNumberOfProducts());
+        HttpSession session = req.getSession(false);
 
         if (id == null && supplierId == null) {
             params.put("actual_title", productCategoryDataStore.find(1));

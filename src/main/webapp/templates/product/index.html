@@ -59,17 +59,20 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">                <a href="/cart">
+            <li class="nav-item">
+                <a href="/cart">
                 <button class="btn btn-outline-success cart-button">
                     <i class="fas fa-cart-arrow-down"></i>
                     <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
                 </button>
-            </a></li>
-            <li class="nav-item">
-                <a class="nav-link"><i class="far fa-user"></i>Sign up</a>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Log in</a>
+                <a th:if="!${session.username}" href="/register" class="nav-link"><i class="far fa-user"></i>Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="!${session.username} ? '/login' : '/logout'"
+                th:text="!${session.username} ? 'Log in' : 'Log out'">Log in</a>
             </li>
         </ul>
     </div>
@@ -103,17 +106,6 @@
                 </button>
                 </form>
             </div>
-        </div>
-        <div th:if="!${session.username}"
-        <div class="register-button">
-            <a href="/register">
-                <button class="btn btn-success">Register</button>
-            </a>
-        </div>
-        <div class="register-button">
-            <a th:href="${session.username} != null ? '/logout' : '/login'">
-                <button th:text="${session.username} != null ? 'Logout' : 'Login'" class="btn btn-success">Login</button>
-            </a>
         </div>
     </div>
     <div class="card card-title mt-3">
