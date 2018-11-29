@@ -1,7 +1,7 @@
 package com.codecool.shop.orderData;
 
 public class Customer {
-
+    private int id;
     private String name;
     private String email;
     private String billingAddress;
@@ -19,6 +19,13 @@ public class Customer {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

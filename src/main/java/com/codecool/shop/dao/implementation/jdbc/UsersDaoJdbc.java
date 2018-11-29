@@ -80,6 +80,28 @@ public class UsersDaoJdbc implements UserDao {
 
     @Override
     public Customer getCostumerByUsername(String username) {
+        getConnection();
+        try {
+            String query =
+                    "SELECT * FROM users WHERE name=?";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, username);
+            ResultSet result = statement.executeQuery();
+            if(result.next()) {
+                Customer customer = new Customer(
+                        result.getString("name"),
+                        result.getString("email"),
+                        result.getString("billing_address"),
+                        result.getString("shipping_address")
+                );
+                customer.setPassword(result.getString("password"));
+                customer.setId(result.getInt("id"));
+                return customer;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
