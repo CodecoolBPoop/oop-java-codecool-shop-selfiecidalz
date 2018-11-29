@@ -24,15 +24,10 @@ public class CartController extends HttpServlet {
         List<LineItem> shoppingCartList = Order.getInstance().getCartList();
 
         HttpSession session = req.getSession(false);
-
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("shoppingCartList", shoppingCartList);
         context.setVariable("total", Order.getInstance().getTotal());
-        if (session != null) {
-            String username = session.getAttribute("username").toString();
-            context.setVariable("customer", UsersDaoJdbc.getInstance().getCostumerByUsername(username));
-        }
         engine.process("product/cart.html", context, resp.getWriter());
 
     }
