@@ -6,6 +6,14 @@ nav ul {
     margin-right: 50px;
 }
 
-nav ul:first-child {
-    padding-right: 20px;
+nav li:last-child {
+    padding-right: 125px;
+}
+
+nav li:first-child {
+    padding-right: 35px;
+}
+
+nav li {
+    padding-right: 10px;
 }

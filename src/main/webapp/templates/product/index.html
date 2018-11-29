@@ -48,12 +48,7 @@
             <div class="col"></div>
             <div class="col"><h1>Codecool Shop</h1></div>
             <div class="col">
-                <a href="/cart">
-                    <button class="btn btn-outline-success cart-button">
-                        <i class="fas fa-cart-arrow-down"></i>
-                        <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
-                    </button>
-                </a>
+
             </div>
         </div>
     </div>
@@ -62,11 +57,17 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">                <a href="/cart">
+                <button class="btn btn-outline-success cart-button">
+                    <i class="fas fa-cart-arrow-down"></i>
+                    <span id="product-num" class="product-number" th:text="${cartItemCount}"></span>
+                </button>
+            </a></li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign up</a>
+                <a class="nav-link">Sign up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
+                <a class="nav-link">Log in</a>
             </li>
         </ul>
     </div>
