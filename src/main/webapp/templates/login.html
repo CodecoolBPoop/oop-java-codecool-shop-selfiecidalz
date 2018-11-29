@@ -48,31 +48,16 @@
 <div class="container">
     <div class="row">
         <div class="item col-xs-6 col-lg-6 align-self-center">
-            <form method="post" action="/register-handler">
+            <form method="post" action="/login">
                 <div class="form-group">
                     <label for="user-name">Username</label>
                     <input type="text" class="form-control" id="user-name" name="username" placeholder="Username" min="4" max="10">
                 </div>
                 <div class="form-group">
-                    <label for="user-email">Email address</label>
-                    <input type="email" class="form-control" name="email" id="user-email"
-                           aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
-                    </small>
-                </div>
-                <div class="form-group">
                     <label for="user-password">Password</label>
                     <input type="password" class="form-control" id="user-password" name="password" placeholder="Password">
                 </div>
-                <div class="form-group">
-                    <label for="billing-address">Billing address</label>
-                    <input type="text" class="form-control" id="billing-address" name="billing" placeholder="Billing address">
-                </div>
-                <div class="form-group">
-                    <label for="shipping-address">Shipping address</label>
-                    <input type="text" class="form-control" id="shipping-address" name="shipping" placeholder="Shipping address">
-                </div>
-                <button type="submit" class="btn btn-primary register-button">Register</button>
+                <button type="submit" class="btn btn-primary register-button">Login</button>
             </form>
         </div>
     </div>

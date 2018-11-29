@@ -43,7 +43,9 @@
 <div class="jumbotron text-center">
     <div class="container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col">
+                <h2 th:text="${session.username} != null ? 'Hello ' + ${session.username} : 'Welcome, Guest!'"></h2>
+            </div>
             <div class="col"><h1>Codecool Shop</h1></div>
             <div class="col">
                 <a href="/cart">
@@ -86,9 +88,15 @@
                 </form>
             </div>
         </div>
+        <div th:if="!${session.username}"
         <div class="register-button">
             <a href="/register">
                 <button class="btn btn-success">Register</button>
+            </a>
+        </div>
+        <div class="register-button">
+            <a th:href="${session.username} != null ? '/logout' : '/login'">
+                <button th:text="${session.username} != null ? 'Logout' : 'Login'" class="btn btn-success">Login</button>
             </a>
         </div>
     </div>

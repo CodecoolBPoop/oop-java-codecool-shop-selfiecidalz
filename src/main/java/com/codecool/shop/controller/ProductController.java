@@ -37,14 +37,6 @@ public class ProductController extends HttpServlet {
         params.put("supplier", supplierDataStore.getAll());
         params.put("cartItemCount", Order.getInstance().getNumberOfProducts());
 
-/*
-        HttpSession session = req.getSession(true);
-        session.setAttribute("username", req.getParameter("username"));
-        Integer userId = UsersDaoJdbc.getInstance().getIdByUserName(session.getAttribute("username").toString());
-        session.setAttribute("id", userId);
-        System.out.println(session.getAttribute("username").toString());
-*/
-
         if (id == null && supplierId == null) {
             params.put("actual_title", productCategoryDataStore.find(1));
             params.put("products", productDataStore.getAll());
