@@ -17,3 +17,11 @@ nav li:first-child {
 nav li {
     padding-right: 10px;
 }
+
+nav a:hover {
+    cursor: pointer;
+}
+
+nav i {
+    margin-right: 5px;
+}
