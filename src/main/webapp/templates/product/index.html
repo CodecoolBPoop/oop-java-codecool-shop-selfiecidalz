@@ -144,17 +144,6 @@
                 </form>
             </div>
         </div>
-        <div th:if="!${session.username}"
-        <div class="register-button">
-            <a href="/register">
-                <button class="btn btn-success">Register</button>
-            </a>
-        </div>
-        <div class="register-button">
-            <a th:href="${session.username} != null ? '/logout' : '/login'">
-                <button th:text="${session.username} != null ? 'Logout' : 'Login'" class="btn btn-success">Login</button>
-            </a>
-        </div>
     </div>
     <div class="card card-title mt-3">
         <strong th:text="${actual_title.name}">Category Title</strong>
